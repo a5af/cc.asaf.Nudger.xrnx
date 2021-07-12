@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RenoiseScriptingTool doc_version="0">
+  <ApiVersion>6</ApiVersion>
+  <AutoUpgraded>true</AutoUpgraded>
+  <Id>cc.asaf.Nudger</Id>
+  <Version>1.1000000000000001</Version>
+  <Author>scripts</Author>
+  <Name>Note Properties</Name>
+  <Category>In Progress</Category>
+  <Description>Nudge various properties of a note through keybindings</Description>
+  <Homepage>https://asaf.cc</Homepage>
+</RenoiseScriptingTool>
