@@ -1,38 +1,21 @@
---get initial note value for GUI
-function get_initial_note_value(cur_note)
-    if cur_note ~= nil then
-        return (cur_note.note_value + 1)
-    else
-        return 1
-    end
-  end
-  
-    --get initial delay value for GUI
-  function get_initial_delay_value(cur_note)
-      if cur_note ~= nil then
-          return (cur_note.delay_value)
-      else
-          return 1
-      end
-  end
-  
   function get_current_subcol()
     local song = renoise.song()
   
     --are we in a note column
     if not song.selected_note_column then
-        return
+      return
     end
   
     return song.selected_sub_column_type
   end
+  
   
   function get_current_note()
     local song = renoise.song()
   
     --are we in a note column
     if not song.selected_note_column then
-        return
+      return
     end
   
     --get current note properties

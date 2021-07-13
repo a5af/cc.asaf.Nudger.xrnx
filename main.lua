@@ -1,19 +1,66 @@
 require 'utils'
 require 'getters'
 require 'nudgers'
+require 'bumpers'
 
+-- NUDGE UP
 renoise.tool():add_keybinding {
-  name = "Global:Tools:Nudge Up",
+  name = "Global:Tools:cc.asaf Nudge Up",
   invoke = function()
     nudgeUp()
   end
 }
 
-renoise.tool():add_keybinding {
-  name = "Global:Tools:Nudge Down",
+renoise.tool():add_menu_entry {
+  name = "Main Menu:Tools:cc.asaf:Nudge Up",
   invoke = function()
-      nudgeDown()
+    nudgeUp()
+  end  
+}
+
+-- NUDGE DOWN
+renoise.tool():add_keybinding {
+  name = "Global:Tools:cc.asaf Nudge Down",
+  invoke = function()
+    nudgeDown()
   end
+}
+
+renoise.tool():add_menu_entry {
+  name = "Main Menu:Tools:cc.asaf:Nudge Down",
+  invoke = function()
+    nudgeDown()
+  end  
+}
+
+-- BUMP UP
+renoise.tool():add_keybinding {
+  name = "Global:Tools:cc.asaf Bump Up",
+  invoke = function()
+    bumpUp()
+  end
+}
+
+renoise.tool():add_menu_entry {
+  name = "Main Menu:Tools:cc.asaf:Bump Up",
+  invoke = function()
+    nudgeDown()
+  end  
+}
+
+-- BUMP DOWN
+renoise.tool():add_keybinding {
+  name = "Global:Tools:cc.asaf Bump Down",
+  invoke = function()
+    bumpDown()
+  end
+}
+
+renoise.tool():add_menu_entry {
+  name = "Main Menu:Tools:cc.asaf:Bump Down",
+  invoke = function()
+    bumpDown()
+  end  
 }
 
 -------------------------------------------------------------------------------------------
