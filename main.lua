@@ -1,7 +1,9 @@
 require 'utils'
 require 'getters'
-require 'nudgers'
+require 'nudge_up'
+require 'nudge_down'
 require 'bumpers'
+require 'enums'
 
 -- NUDGE UP
 renoise.tool():add_keybinding {

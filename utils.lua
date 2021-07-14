@@ -8,7 +8,7 @@ function DEC_HEX(IN)
     return OUT
   end
 
-  function enum(names, offset)
+function enum(names, offset)
 	offset=offset or 1
 	local objects = {}
 	local size=0
@@ -37,12 +37,22 @@ function DEC_HEX(IN)
 	return objects
 end
 
--- TODO: implement enums
-fields = enum({
-    "NOTE",
-    "INST", 
-    "VOL",
-    "PAN",
-    "DLY",
-    "FX",
-  }) 
+
+-- Implements integer indexing into a string, ie mystring[1] gets first char of mystring
+local string_meta = getmetatable('')
+
+function string_meta:__index( key )
+    local val = string[ key ]
+    if ( val ) then
+        return val
+    elseif ( tonumber( key ) ) then
+        return self:sub( key, key )
+    else
+        error( "attempt to index a string value with bad key ('" .. tostring( key ) .. "' is not part of the string library)", 2 )
+    end
+end
+
+
+-- TODO
+function nudge_command(command, value)
+end
