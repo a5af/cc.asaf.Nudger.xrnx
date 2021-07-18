@@ -34,125 +34,51 @@
   
     -- NUDGE DOWN VOL
     if subcol == 3 then
-      print('blank', note.volume_value)
-      if note.volume_value > 0 then
-        note.volume_value = note.volume_value - 1
-      elseif note.volume_value == 0 then
-        note.volume_value = 255 -- make it blank
-      elseif note.volume_value == 255 then -- is it blank?
+      if note.volume_value == 0xFF then -- is it blank?
         note.volume_value = 0x7F
+      elseif note.volume_value == 0 then
+        note.volume_value = 0xFF -- make it blank
+      elseif note.volume_value > 0 and note.volume_value < 128 then
+        note.volume_value = note.volume_value - 1
       else 
 
         -- EFFECT COMMAND
         local command = note.volume_string[1]
         local value = tonumber(note.volume_string[2])
  
-        -- GLIDE
-        if command == EFFECT_COMMANDS.G.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- SLIDE UP
-        if command == EFFECT_COMMANDS.U.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- SLIDE DOWN
-        if command == EFFECT_COMMANDS.D.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- FADE IN
-        if command == EFFECT_COMMANDS.I.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- FADE OUT
-        if command == EFFECT_COMMANDS.O.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- PLAY BACKWARDS
-        if command == EFFECT_COMMANDS.B.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- DELAY PLAYBACK
-        if command == EFFECT_COMMANDS.Q.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- RETRIGGER
-        if command == EFFECT_COMMANDS.R.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- MAYBE TRIGGER
-        if command == EFFECT_COMMANDS.Y.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
-        end
-
-        -- CUT VOLUME
-        if command == EFFECT_COMMANDS.C.name then
-          if value ~= nil and value > 0 then 
-            value = value - 1
-            note.volume_string = command..DEC_HEX(value)
-          else
-            note.volume_string = command.."F"
-          end
+        if value ~= nil and value > 0 then 
+          value = value - 1
+          note.volume_string = command..DEC_HEX(value)
+        else
+          note.volume_string = command.."F"
         end
       end
     end
   
     -- NUDGE DOWN PAN
     if subcol == 4 then
-      if note.panning_value > 0 then
+      if note.panning_value == 0xFF then -- is it blank?
+        note.panning_value = 0x7F
+      elseif note.panning_value == 0 then
+        note.panning_value = 0xFF -- make it blank
+      elseif note.panning_value > 0 and note.panning_value < 128 then
         note.panning_value = note.panning_value - 1
+      else 
+
+        -- EFFECT COMMAND
+        local command = note.panning_string[1]
+        local value = tonumber(note.panning_string[2])
+ 
+        if value ~= nil and value > 0 then 
+          value = value - 1
+          if value == 0 then
+            note.panning_string = command.."0"
+          else
+            note.panning_string = command..DEC_HEX(value)
+          end
+        else
+          note.panning_string = command.."F"
+        end
       end
     end
   
@@ -160,13 +86,22 @@
     if subcol == 5 then
       if note.delay_value > 0 then
         note.delay_value = note.delay_value - 1
+      else
+        note.delay_value = 0xFF
       end
     end
   
-    -- NUDGE DOWN FX
+    -- NUDGE DOWN FX NUMBER
     if subcol == 6 then
       print("down fx")
     end
 
-
+    -- NUDGE DOWN FX AMOUNT
+    if subcol == 7 then
+      if note.effect_amount_value > 0 then
+        note.effect_amount_value = note.effect_amount_value - 1
+      else
+        note.effect_amount_value = 0xFF
+      end
+    end
   end
