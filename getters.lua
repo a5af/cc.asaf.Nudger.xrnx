@@ -26,4 +26,13 @@
   
     return song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]:note_column(cur_col)
   end
+
+
+  function get_phrase()
+    local song = renoise.song()
+
+    local cur_phrase = song.selected_phrase_index
+    print(cur_phrase)
+
+  end
   
