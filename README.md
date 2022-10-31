@@ -1,4 +1,4 @@
-# cc.asaf.Nudger.xrnx
+# com.asafebgi.Nudger.xrnx
 
 ## Renoise extension for nudging field values (Note, Inst, Vol, Pan, Dly, FX)
 Use with the Tools menu or keybinding to nudge values up/down.
