@@ -12,8 +12,6 @@
     local subcol = get_current_subcol()
     local note = get_current_note()
 
-    print(subcol)
-
     -- NUDGE DOWN NOTE
     if subcol == 1 then
       if note ~= nil then
