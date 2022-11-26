@@ -34,7 +34,6 @@ function nudgeUp()
   
     -- NUDGE UP VOL
     if subcol == 3 then
-      print(note.volume_value)
       if note.volume_value < 127 then
         note.volume_value = note.volume_value + 1
       elseif note.volume_value == 0x7F then

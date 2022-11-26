@@ -33,7 +33,7 @@ function nudgeClear()
   
     -- NUDGE CLEAR DLY
     if subcol == 5 then
-      note.delay_value = 255
+      note.delay_value = 0
     end
   
     -- NUDGE CLEAR FX NUMBER

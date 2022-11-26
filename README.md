@@ -8,7 +8,6 @@ Use with the Tools menu or keybinding to nudge values up/down.
 
 TODO:
 
-- Nudge through FX types.
 - Nudge phrase editor fields (requires API extension: phrase editor cursor position)
 
 Credit to ledger.scripts.NoteProperties.xrnx (https://www.renoise.com/tools/note-properties) as the starting point.

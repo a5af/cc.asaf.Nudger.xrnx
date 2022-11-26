@@ -2,10 +2,7 @@
 -- NUDGE DOWN
 --
   function nudgeDown() 
-    
     local song = renoise.song()
-
-    print('nudge down')
     get_phrase()
 
     if not song.selected_note_column then
