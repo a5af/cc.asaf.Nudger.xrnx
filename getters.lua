@@ -36,6 +36,14 @@
     local cur_track = song.selected_track_index
     local cur_col = song.selected_note_column_index
     local cur_pattern = song.selected_pattern_index
+
+    local above_line = song.selected_line_index - 1
+    if above_line < 0 then
+      return
+    end
+
+    return song.patterns[cur_pattern].tracks[cur_track].lines[above_line]:note_column(cur_col)
+
   end
 
   function get_below_note()
@@ -43,6 +51,13 @@
     local cur_track = song.selected_track_index
     local cur_col = song.selected_note_column_index
     local cur_pattern = song.selected_pattern_index
+
+    local below_line = song.selected_line_index + 1
+    if below_line > 0 then
+      return
+    end
+
+    return song.patterns[cur_pattern].tracks[cur_track].lines[below_line]:note_column(cur_col)
   end
 
 

@@ -8,6 +8,9 @@ Use with the Tools menu or keybinding to nudge values up/down.
 
 TODO:
 
-- Nudge phrase editor fields (requires API extension: phrase editor cursor position)
+- Nudge FX
+- Move fields
+- Clone fields
+- Port operations to support phrase editor fields
 
 Credit to ledger.scripts.NoteProperties.xrnx (https://www.renoise.com/tools/note-properties) as the starting point.

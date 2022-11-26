@@ -5,4 +5,6 @@ function cloneDown()
   end
   local subcol = get_current_subcol()
   local note = get_current_note()
+
+  
 end
