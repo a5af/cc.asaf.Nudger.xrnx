@@ -27,6 +27,24 @@
     return song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]:note_column(cur_col)
   end
 
+  function get_above_note()
+    local song = renoise.song()
+    if not song.selected_note_column then
+      return
+    end
+    local cur_line = song.selected_line_index
+    local cur_track = song.selected_track_index
+    local cur_col = song.selected_note_column_index
+    local cur_pattern = song.selected_pattern_index
+  end
+
+  function get_below_note()
+    local cur_line = song.selected_line_index
+    local cur_track = song.selected_track_index
+    local cur_col = song.selected_note_column_index
+    local cur_pattern = song.selected_pattern_index
+  end
+
 
   function get_phrase()
     local song = renoise.song()
