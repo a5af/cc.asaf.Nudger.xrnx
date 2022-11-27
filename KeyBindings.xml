@@ -829,13 +829,8 @@
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Bump Up</Binding>
-          <Key>Option + Control + Up</Key>
-        </KeyBinding>
-        <KeyBinding>
-          <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Bump Down</Binding>
-          <Key>Option + Control + Down</Key>
+          <Binding>∿ cc.asaf Nudge Clear</Binding>
+          <Key>Option + Back</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
@@ -2230,6 +2225,18 @@
         <KeyBinding>
           <Topic>Options</Topic>
           <Binding>Toggle Show Track Colors</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Selection</Topic>
+          <Binding>∿ Reform Selected Notes...</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Selection</Topic>
+          <Binding>∿ Restore Reform Window</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Selection</Topic>
+          <Binding>∿ Strumify Line at Edit Cursor...</Binding>
         </KeyBinding>
       </KeyBindings>
     </Category>

@@ -43,7 +43,6 @@
     end
 
     return song.patterns[cur_pattern].tracks[cur_track].lines[above_line]:note_column(cur_col)
-
   end
 
   function get_below_note()
@@ -56,7 +55,6 @@
     if below_line > 0 then
       return
     end
-
     return song.patterns[cur_pattern].tracks[cur_track].lines[below_line]:note_column(cur_col)
   end
 
