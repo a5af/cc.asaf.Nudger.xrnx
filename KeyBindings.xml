@@ -834,6 +834,46 @@
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Move Up</Binding>
+          <Key>Command + Up</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Move Down</Binding>
+          <Key>Command + Down</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Move Left</Binding>
+          <Key>Command + Left</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Move Right</Binding>
+          <Key>Command + Right</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clone Up</Binding>
+          <Key>Prior</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clone Down</Binding>
+          <Key>Next</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clone Left</Binding>
+          <Key>Home</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clone Right</Binding>
+          <Key>End</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
           <Binding>∿ Speed Bar...</Binding>
         </KeyBinding>
         <KeyBinding>
@@ -857,12 +897,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Previous Category Browser</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Next Category Browser</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
@@ -887,22 +925,18 @@
         <KeyBinding>
           <Topic>Selection</Topic>
           <Binding>Select First Entry</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
           <Binding>Select Last Entry</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
           <Binding>Select on Previous Page</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
           <Binding>Select on Next Page</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
@@ -932,12 +966,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select CurrentDir as Root</Binding>
-          <Key>Command + Right</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Switch to Parent Root Directory</Binding>
-          <Key>Command + Left</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Edit</Topic>
@@ -1076,22 +1108,18 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump 16 Rows Up</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump 16 Rows Down</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to First Row</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to Last Row</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -1516,22 +1544,18 @@
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Increase Pattern Number</Binding>
-          <Key>Command + Right</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Decrease Pattern Number</Binding>
-          <Key>Command + Left</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Go Up in Sequencer</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Go Down in Sequencer</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
@@ -2274,22 +2298,18 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move Cursor to Visible Start</Binding>
-          <Key>Command + Left</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move Cursor to Sample Start</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move Cursor to Visible End</Binding>
-          <Key>Command + Right</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move Cursor to Sample End</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -2304,22 +2324,18 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Zoom In</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Zoom Out</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Zoom In Vertical</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Zoom Out Vertical</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -2681,22 +2697,18 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move One Page Up</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move One Page Down</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to First Device</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to Last Device</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -2919,22 +2931,18 @@
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Increase Pattern Number</Binding>
-          <Key>Command + Right</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Decrease Pattern Number</Binding>
-          <Key>Command + Left</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Go Up in Sequencer</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Go Down in Sequencer</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
@@ -3042,22 +3050,18 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to Start</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to End</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump One Page Up</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump One Page Down</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
@@ -3294,12 +3298,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select First Track</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Last Track</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -3314,12 +3316,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Previous Sequence Page</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Next Sequence Page</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -3526,12 +3526,10 @@
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Increase Pattern Number</Binding>
-          <Key>Command + Right</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
           <Binding>Decrease Pattern Number</Binding>
-          <Key>Command + Left</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Pattern Sequence</Topic>
@@ -3616,12 +3614,10 @@
         <KeyBinding>
           <Topic>Options</Topic>
           <Binding>Decrease Slot Height</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Options</Topic>
           <Binding>Increase Slot Height</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Options</Topic>
@@ -3655,12 +3651,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Previous Phrase</Binding>
-          <Key>Command + Left</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Next Phrase</Binding>
-          <Key>Command + Right</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -3713,22 +3707,18 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump 16 Rows Up</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump 16 Rows Down</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to First Row</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Jump to Last Row</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -4471,12 +4461,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move to Previous</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move to Next</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -4501,12 +4489,10 @@
         <KeyBinding>
           <Topic>Selection</Topic>
           <Binding>Move Selection to First</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
           <Binding>Move Selection to Last</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>
@@ -4555,22 +4541,18 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Previous Instrument Page</Binding>
-          <Key>Prior</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Next Instrument Page</Binding>
-          <Key>Next</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select First Instrument</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Last Instrument</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Edit</Topic>
@@ -4735,12 +4717,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select First Device</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Last Device</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -4896,12 +4876,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select First Set</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Last Set</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -4978,12 +4956,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move to Start</Binding>
-          <Key>Command + Left</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Move to End</Binding>
-          <Key>Command + Right</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -5072,12 +5048,10 @@
         <KeyBinding>
           <Topic>Shift / Amplify</Topic>
           <Binding>Amplify Values Up</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Shift / Amplify</Topic>
           <Binding>Amplify Values Down</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Process</Topic>
@@ -5172,12 +5146,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select First Device</Binding>
-          <Key>Home</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Select Last Device</Binding>
-          <Key>End</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
@@ -5192,12 +5164,10 @@
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Maximize All</Binding>
-          <Key>Command + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Navigation</Topic>
           <Binding>Minimize All</Binding>
-          <Key>Command + Down</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Edit</Topic>
