@@ -6,6 +6,10 @@ function moveLeft()
   local subcol = get_current_subcol()
   local note = get_current_note()
 
+  local col_cnt = get_col_count()
+  print("col_cnt", col_cnt)
+  print("cur_subcol", subcol)
+
   if note.note_value == 121 then
     return
   end

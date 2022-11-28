@@ -32,7 +32,8 @@
       if cur_track == 0 then
         return
       end
-      cur_track = cur_track -1
+      cur_track = cur_track - 1
+      -- cur_col = 
     end
 
 
