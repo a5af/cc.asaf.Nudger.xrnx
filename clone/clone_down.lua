@@ -5,10 +5,11 @@ function cloneDown()
   end
   local subcol = get_current_subcol()
   local note = get_current_note()
+  local note_below = get_below_note()
 
   -- NOTE
   if subcol == 1 then
-      
+    note_below.note_value = note.note_value
   end
 
   -- INST
