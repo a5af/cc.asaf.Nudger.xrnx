@@ -3,9 +3,7 @@ function moveUp()
   if not song.selected_note_column then
     return
   end
-  local subcol = get_current_subcol()
-  local note = get_current_note()
-  local note_above = get_above_note()
+  local subcol, note, note_above = get_current_subcol(), get_current_note(), get_above_note()
 
   if note.note_value == 121 then
     return

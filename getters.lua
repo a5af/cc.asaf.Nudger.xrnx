@@ -6,7 +6,6 @@
     return song.selected_sub_column_type
   end
   
-  
   function get_current_note()
     local song = renoise.song()
     if not song.selected_note_column then
@@ -33,10 +32,10 @@
         return
       end
       cur_track = cur_track - 1
-      -- cur_col = 
+    else
+      cur_col = cur_col -1
     end
-
-
+    return song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]:note_column(cur_col)
   end
 
   function get_right_note()
@@ -48,6 +47,17 @@
     local cur_track = song.selected_track_index
     local cur_col = song.selected_note_column_index
     local cur_pattern = song.selected_pattern_index
+    print(cur_col, cur_track)
+    if cur_col == get_col_count() -1 then
+      if cur_track == get_track_count() - 1 then
+        return
+      end
+      cur_track = cur_track - 1
+    else
+      cur_col = cur_col -1
+    end
+    return song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]:note_column(cur_col)
+
   end
 
   function get_above_note()
@@ -66,13 +76,6 @@
     return song.patterns[cur_pattern].tracks[cur_track].lines[above_line]:note_column(cur_col)
   end
 
-  function get_table_size(t)
-    local count = 0
-    for _, __ in pairs(t) do
-        count = count + 1
-    end
-    return count
-  end
 
   function get_line_count()
     local song = renoise.song()
@@ -126,7 +129,6 @@
     end
     return song.patterns[cur_pattern].tracks[cur_track].lines[below_line]:note_column(cur_col)
   end
-
 
   function get_phrase()
     local song = renoise.song()
