@@ -95,7 +95,7 @@
   
     -- NUDGE DOWN FX NUMBER
     if subcol == 6 then
-      print("down fx")
+      note.effect_number_value = get_next_effect_number(note.effect_number_value)
     end
 
     -- NUDGE DOWN FX AMOUNT

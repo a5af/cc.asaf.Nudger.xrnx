@@ -87,9 +87,6 @@ function nudgeUp()
   
     -- NUDGE UP FX NUMBER
     if subcol == 6 then
-      print("up fx")
-      print(note.effect_number_value, get_next_effect_number(note.effect_number_value))
-
       note.effect_number_value = get_next_effect_number(note.effect_number_value)
     end
 
