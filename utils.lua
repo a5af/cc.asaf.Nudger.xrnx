@@ -37,6 +37,14 @@ function enum(names, offset)
 	return objects
 end
 
+function map(t, f)
+	local t1 = {}
+	local t_len = #t
+	for i = 1, t_len do
+			t1[i] = f(t[i], i)
+	end
+	return t1
+end
 
 -- Implements integer indexing into a string, ie mystring[1] gets first char of mystring
 local string_meta = getmetatable('')

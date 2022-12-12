@@ -5,6 +5,64 @@
     end
     return song.selected_sub_column_type
   end
+
+    -- A = 10
+    -- U = 30
+    -- D = 13
+    -- G = 16
+    -- V = 31
+    -- I = 18
+    -- O = 24
+    -- T = 29
+    -- C = 12
+    -- M = 22
+    -- L = 21
+    -- S = 28
+    -- B = 11
+    -- E = 14
+    -- Q = 26
+    -- R = 27
+    -- Y = 34
+    -- N = 23
+    -- P = 25
+    -- W = 32
+    -- X = 33
+    -- Z = 35
+    -- J = 19
+    -- ZT
+    -- ZL
+    -- ZK
+    -- ZG
+    -- ZB
+    -- ZD
+
+
+  fxcmds = { A = 10, U = 30, D = 13, G = 16, V = 31, I = 18, O = 24, T = 29, C = 12, M = 22, L = 21, S = 28, B = 11, E = 14, Q = 26, R = 27, Y = 34, N = 23, P = 25, W = 32, X = 33, Z = 35, J = 19 }
+
+  fxarr = { 10, 30, 13, 16, 31, 18, 24, 29, 12, 22, 21, 28, 11, 14, 26, 27, 34, 23, 25, 32, 33, 35, 19}
+
+  function get_next_effect_number(effect_number)
+    if effect_number == 10 then
+      return 30
+    end
+
+    if effect_number == 30 then
+      return 13
+    end
+
+    if effect_number == 13 then
+      return 16
+    end
+
+    if effect_number == 16 then
+      return 31
+    end
+
+  end
+
+  function get_prev_effect_number(effect_number)
+
+  end
   
   function get_current_note()
     local song = renoise.song()
