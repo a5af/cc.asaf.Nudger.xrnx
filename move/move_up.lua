@@ -16,9 +16,14 @@ function moveUp()
   note_above.volume_value = note.volume_value
   note_above.panning_value = note.panning_value
   note_above.delay_value = note.delay_value
+  note_above.effect_number_value = note.effect_number_value
+  note_above.effect_amount_value = note.effect_amount_value
 
   note.instrument_value = 255
   note.volume_value = 255
   note.panning_value = 255
   note.delay_value = 0
+  
+  note.effect_number_value = 0
+  note.effect_amount_value = 0
 end

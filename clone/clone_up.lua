@@ -34,11 +34,11 @@ function cloneUp()
 
   -- FX NUMBER
   if subcol == 6 then
-    print("clear fx")
+    note.effect_number_value = 255
   end
 
   -- FX AMOUNT
   if subcol == 7 then
-    note.effect_amount_value = 255
+    note.effect_amount_value = 0
   end
 end
