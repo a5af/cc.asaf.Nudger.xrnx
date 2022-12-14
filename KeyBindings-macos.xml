@@ -266,7 +266,7 @@
         <KeyBinding>
           <Topic>Transport</Topic>
           <Binding>Pause/Continue</Binding>
-          <Key>Space</Key>
+          <Key>Shift + Space</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Transport</Topic>
@@ -299,7 +299,7 @@
         <KeyBinding>
           <Topic>Transport</Topic>
           <Binding>Play from Cursor</Binding>
-          <Key>Shift + Space</Key>
+          <Key>Space</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Transport</Topic>

@@ -12,8 +12,6 @@ function moveDown()
   end
 
   note_below.note_value = note.note_value
-  note.note_value = 121
-
   note_below.instrument_value = note.instrument_value
   note_below.volume_value = note.volume_value
   note_below.panning_value = note.panning_value
@@ -25,8 +23,7 @@ function moveDown()
   note.volume_value = 255
   note.panning_value = 255
   note.delay_value = 0
-
+  note.note_value = 121
   note.effect_number_value = 0
   note.effect_amount_value = 0
-
 end

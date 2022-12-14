@@ -7,39 +7,16 @@ function cloneDown()
   local note = get_current_note()
   local note_below = get_below_note()
 
-  -- NOTE
-  if subcol == 1 then
-    note_below.note_value = note.note_value
+  if note.note_value == 121 then
+    return
   end
-
-  -- INST
-  if subcol == 2 then
-    note.instrument_value = 255
-  end
-
-  -- VOL
-  if subcol == 3 then
-    note.volume_value = 255
-  end
-
-  -- PAN
-  if subcol == 4 then
-    note.panning_value = 255
-  end
-
-  -- DLY
-  if subcol == 5 then
-    note.delay_value = 0
-  end
-
-  -- FX NUMBER
-  if subcol == 6 then
-    print("clear fx")
-  end
-
-  -- FX AMOUNT
-  if subcol == 7 then
-    note.effect_amount_value = 255
-  end
+  
+  note_below.note_value = note.note_value
+  note_below.instrument_value = note.instrument_value
+  note_below.volume_value = note.volume_value
+  note_below.panning_value = note.panning_value
+  note_below.delay_value = note.delay_value
+  note_below.effect_number_value = note.effect_number_value
+  note_below.effect_amount_value = note.effect_amount_value
   
 end
