@@ -1,6 +1,18 @@
---
 -- NUDGE DOWN
---
+renoise.tool():add_keybinding {
+  name = "Global:Tools:cc.asaf Nudge Down",
+  invoke = function()
+    nudgeDown()
+  end
+}
+
+renoise.tool():add_menu_entry {
+  name = "Main Menu:Tools:cc.asaf:Nudge Down",
+  invoke = function()
+    nudgeDown()
+  end  
+}
+
   function nudgeDown() 
     local song = renoise.song()
     get_phrase()

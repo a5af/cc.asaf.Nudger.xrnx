@@ -1,7 +1,17 @@
---
 -- NUDGE UP
---
+renoise.tool():add_keybinding {
+  name = "Global:Tools:cc.asaf Nudge Up",
+  invoke = function()
+    nudgeUp()
+  end
+}
 
+renoise.tool():add_menu_entry {
+  name = "Main Menu:Tools:cc.asaf:Nudge Up",
+  invoke = function()
+    nudgeUp()
+  end  
+}
 function nudgeUp() 
    
     local song = renoise.song()
