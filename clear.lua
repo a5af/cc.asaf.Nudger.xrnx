@@ -22,38 +22,12 @@ function clear()
     local subcol = get_current_subcol()
     local note = get_current_note()
       
-    -- NUDGE CLEAR NOTE
-    if subcol == 1 then
-      note.note_value = 121 -- make it blank
-    end
   
-    -- NUDGE CLEAR INST
-    if subcol == 2 then
-      note.instrument_value = 255
-    end
-  
-    -- NUDGE CLEAR VOL
-    if subcol == 3 then
-      note.volume_value = 255 -- make it blank
-    end
-
-    -- NUDGE CLEAR PAN
-    if subcol == 4 then
-      note.panning_value = 255 -- make it blank
-    end
-  
-    -- NUDGE CLEAR DLY
-    if subcol == 5 then
-      note.delay_value = 0
-    end
-  
-    -- NUDGE CLEAR FX NUMBER
-    if subcol == 6 then
-      note.effect_number_value = 0
-    end
-
-    -- NUDGE CLEAR FX AMOUNT
-    if subcol == 7 then
-      note.effect_amount_value = 0
-    end
+    note.note_value = 121 -- make it blank
+    note.instrument_value = 255
+    note.volume_value = 255 -- make it blank
+    note.panning_value = 255 -- make it blank
+    note.delay_value = 0
+    note.effect_number_value = 0
+    note.effect_amount_value = 0
   end

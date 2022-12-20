@@ -266,11 +266,12 @@
         <KeyBinding>
           <Topic>Transport</Topic>
           <Binding>Pause/Continue</Binding>
-          <Key>Shift + Space</Key>
+          <Key>Space</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Transport</Topic>
           <Binding>Pause/Continue (from cursor)</Binding>
+          <Key>Shift + Space</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Transport</Topic>
@@ -299,7 +300,6 @@
         <KeyBinding>
           <Topic>Transport</Topic>
           <Binding>Play from Cursor</Binding>
-          <Key>Space</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Transport</Topic>
@@ -324,12 +324,12 @@
         <KeyBinding>
           <Topic>Transport</Topic>
           <Binding>Go to Previous Pattern in Sequence</Binding>
-          <Key>F1</Key>
+          <Key>F2</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Transport</Topic>
           <Binding>Go to Next Pattern in Sequence</Binding>
-          <Key>F2</Key>
+          <Key>F1</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Transport</Topic>
@@ -829,7 +829,7 @@
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Nudge Clear</Binding>
+          <Binding>∿ cc.asaf Clear</Binding>
           <Key>Option + Back</Key>
         </KeyBinding>
         <KeyBinding>
