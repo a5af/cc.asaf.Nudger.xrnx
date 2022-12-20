@@ -1,74 +1,87 @@
 function DEC_HEX(IN)
-    local B,K,OUT,I,D=16,"0123456789ABCDEF","",0
-    while IN>0 do
-        I=I+1
-        IN,D=math.floor(IN/B),math.mod(IN,B)+1
-        OUT=string.sub(K,D,D)..OUT
-    end
-    return OUT
+  local B, K, OUT, I, D = 16, "0123456789ABCDEF", "", 0
+  while IN > 0 do
+    I = I + 1
+    IN, D = math.floor(IN / B), math.mod(IN, B) + 1
+    OUT = string.sub(K, D, D) .. OUT
   end
+  return OUT
+end
 
 function enum(names, offset)
-	offset=offset or 1
-	local objects = {}
-	local size=0
-	for idr,name in pairs(names) do
-		local id = idr + offset - 1
-		local obj = {
-			id=id,       -- id
-			idr=idr,     -- 1-based relative id, without offset being added
-			name=name    -- name of the object
-		}
-		objects[name] = obj
-		objects[id] = obj
-		size=size+1
-	end
-	objects.idstart = offset        -- start of the id range being used
-	objects.idend = offset+size-1   -- end of the id range being used
-	objects.size=size
-	objects.all = function()
-		local list = {}
-		for _,name in pairs(names) do
-			add(list,objects[name])
-		end
-		local i=0
-		return function() i=i+1 if i<=#list then return list[i] end end
-	end
-	return objects
+  offset = offset or 1
+  local objects = {}
+  local size = 0
+  for idr, name in pairs(names) do
+    local id = idr + offset - 1
+    local obj = {
+      id = id, -- id
+      idr = idr, -- 1-based relative id, without offset being added
+      name = name -- name of the object
+    }
+    objects[name] = obj
+    objects[id] = obj
+    size = size + 1
+  end
+  objects.idstart = offset -- start of the id range being used
+  objects.idend = offset + size - 1 -- end of the id range being used
+  objects.size = size
+  objects.all = function()
+    local list = {}
+    for _, name in pairs(names) do add(list, objects[name]) end
+    local i = 0
+    return function()
+      i = i + 1
+      if i <= #list then return list[i] end
+    end
+  end
+  return objects
 end
 
 function map(t, f)
-	local t1 = {}
-	local t_len = #t
-	for i = 1, t_len do
-			t1[i] = f(t[i], i)
-	end
-	return t1
+  local t1 = {}
+  local t_len = #t
+  for i = 1, t_len do t1[i] = f(t[i], i) end
+  return t1
 end
 
 -- Implements integer indexing into a string, ie mystring[1] gets first char of mystring
 local string_meta = getmetatable('')
 
-function string_meta:__index( key )
-    local val = string[ key ]
-    if ( val ) then
-        return val
-    elseif ( tonumber( key ) ) then
-        return self:sub( key, key )
-    else
-        error( "attempt to index a string value with bad key ('" .. tostring( key ) .. "' is not part of the string library)", 2 )
-    end
+function string_meta:__index(key)
+  local val = string[key]
+  if (val) then
+    return val
+  elseif (tonumber(key)) then
+    return self:sub(key, key)
+  else
+    error("attempt to index a string value with bad key ('" .. tostring(key) ..
+            "' is not part of the string library)", 2)
+  end
 end
 
+function copy_note_values(src, dest)
+  dest.note_value = src.note_value
+  dest.instrument_value = src.instrument_value
+  dest.volume_value = src.volume_value
+  dest.panning_value = src.panning_value
+  dest.delay_value = src.delay_value
+  dest.effect_number_value = src.effect_number_value
+  dest.effect_amount_value = src.effect_amount_value
+end
 
--- TODO
-function nudge_command(command, value)
+function clear_row(dest)
+  dest.note_value = 121
+  dest.instrument_value = 255
+  dest.volume_value = 255
+  dest.panning_value = 255
+  dest.delay_value = 0
+  dest.effect_number_value = 0
+  dest.effect_amount_value = 0
 end
 
 function get_table_size(t)
-	local count = 0
-	for _, __ in pairs(t) do
-			count = count + 1
-	end
-	return count
+  local count = 0
+  for _, __ in pairs(t) do count = count + 1 end
+  return count
 end

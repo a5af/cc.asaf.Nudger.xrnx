@@ -130,115 +130,101 @@ function get_prev_effect_number(effect_number)
   return cardinal_to_cmd[cardinal]
 end
 
+function get_cur_line_track_col_pattern()
+  local song = renoise.song()
+  return {
+    line = song.selected_line_index,
+    track = song.selected_track_index,
+    col = song.selected_note_column_index,
+    pattern = song.selected_pattern_index
+  }
+end
+
 function get_current_note()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
+  local cur = get_cur_line_track_col_pattern()
   return
-    song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]:note_column(
-      cur_col)
+    song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
+      cur.col)
 end
 
 function get_left_note()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
-  if cur_col == 0 then
-    if cur_track == 0 then return end
-    cur_track = cur_track - 1
+  local cur = get_cur_line_track_col_pattern()
+  if cur.col == 0 then
+    if cur.track == 0 then return end
+    cur.track = cur.track - 1
   else
-    cur_col = cur_col - 1
+    cur.col = cur.col - 1
   end
   return
-    song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]:note_column(
-      cur_col)
+    song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
+      cur.col)
 end
 
 function get_right_note()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
-  print(cur_col, cur_track)
-  if cur_col == get_col_count() - 1 then
-    if cur_track == get_track_count() - 1 then return end
-    cur_track = cur_track - 1
+  local cur = get_cur_line_track_col_pattern()
+
+  if cur.col == get_col_count() - 1 then
+    if cur.track == get_track_count() - 1 then return end
+    cur.track = cur.track - 1
   else
-    cur_col = cur_col - 1
+    cur.col = cur.col - 1
   end
   return
-    song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]:note_column(
-      cur_col)
+    song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
+      cur.col)
 
 end
 
 function get_above_note()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
+  local cur = get_cur_line_track_col_pattern()
   local above_line = song.selected_line_index - 1
   if above_line < 0 then return end
   return
-    song.patterns[cur_pattern].tracks[cur_track].lines[above_line]:note_column(
-      cur_col)
+    song.patterns[cur.pattern].tracks[cur.track].lines[above_line]:note_column(
+      cur.col)
 end
 
 function get_line_count()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
-  return get_table_size(song.patterns[cur_pattern].tracks[cur_track].lines)
+  local cur = get_cur_line_track_col_pattern()
+  return get_table_size(song.patterns[cur.pattern].tracks[cur.track].lines)
 end
 
 function get_track_count()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
-  return get_table_size(song.patterns[cur_pattern].tracks)
+  local cur = get_cur_line_track_col_pattern()
+  return get_table_size(song.patterns[cur.pattern].tracks)
 end
 
 function get_col_count()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
+  local cur = get_cur_line_track_col_pattern()
   return get_table_size(
-           song.patterns[cur_pattern].tracks[cur_track].lines[cur_line]
+           song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]
              .note_columns)
 end
 
 function get_below_note()
   local song = renoise.song()
   if not song.selected_note_column then return end
-  local cur_line = song.selected_line_index
-  local cur_track = song.selected_track_index
-  local cur_col = song.selected_note_column_index
-  local cur_pattern = song.selected_pattern_index
+  local cur = get_cur_line_track_col_pattern()
 
   local below_line = song.selected_line_index + 1
   if below_line >= get_line_count() then return end
   return
-    song.patterns[cur_pattern].tracks[cur_track].lines[below_line]:note_column(
-      cur_col)
+    song.patterns[cur.pattern].tracks[cur.track].lines[below_line]:note_column(
+      cur.col)
 end
 
 function get_phrase()
