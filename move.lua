@@ -1,7 +1,11 @@
 -- MOVE UP
 renoise.tool():add_keybinding{
   name = "Global:Tools:cc.asaf Move Up",
-  invoke = function() moveUp() end
+  invoke = function()
+    local s = renoise.song().selection_in_pattern
+    if s.start_line ~= s.end_line then return selectionMoveUp() end
+    moveUp()
+  end
 }
 
 renoise.tool():add_menu_entry{
@@ -13,12 +17,8 @@ renoise.tool():add_menu_entry{
 renoise.tool():add_keybinding{
   name = "Global:Tools:cc.asaf Move Down",
   invoke = function()
-
     local s = renoise.song().selection_in_pattern
     if s.start_line ~= s.end_line then return selectionMoveDown() end
-
-    for k, v in pairs(s) do print(k, v) end
-
     moveDown()
   end
 }
@@ -151,15 +151,23 @@ end
 
 function selectionMoveDown()
   local song = renoise.song()
-  print('selection move')
-
   local sp = song.selection_in_pattern
   song.selection_in_pattern = {
     start_line = sp.start_line + 1,
-    end_line = sp.end_line + 1
+    end_line = sp.end_line + 1,
+    start_track = sp.start_track,
+    end_track = sp.end_track
   }
-  -- sp = {}
-  -- sp.start_line = sp.start_line + 1
-  -- sp.end_line = sp.end_line + 1
 
+end
+
+function selectionMoveUp()
+  local song = renoise.song()
+  local sp = song.selection_in_pattern
+  song.selection_in_pattern = {
+    start_line = sp.start_line - 1,
+    end_line = sp.end_line - 1,
+    start_track = sp.start_track,
+    end_track = sp.end_track
+  }
 end
