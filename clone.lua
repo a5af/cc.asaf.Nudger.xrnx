@@ -51,6 +51,7 @@ function cloneUp()
   if note.note_value == 121 then return end
 
   copy_note_values(note, note_above)
+  song.selected_line_index = song.selected_line_index - 1
 end
 
 function cloneRight()
@@ -120,5 +121,7 @@ function cloneDown()
 
   if note.note_value == 121 then return end
   copy_note_values(note, note_below)
+
+  song.selected_line_index = song.selected_line_index + 1
 
 end

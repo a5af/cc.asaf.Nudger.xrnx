@@ -70,6 +70,8 @@ function copy_note_values(src, dest)
   dest.effect_amount_value = src.effect_amount_value
 end
 
+function cache_note(note) CACHE_note = note end
+
 function clear_row(dest)
   dest.note_value = 121
   dest.instrument_value = 255
@@ -84,4 +86,23 @@ function get_table_size(t)
   local count = 0
   for _, __ in pairs(t) do count = count + 1 end
   return count
+end
+
+-- range(a) returns an iterator from 1 to a (step = 1)
+-- range(a, b) returns an iterator from a to b (step = 1)
+-- range(a, b, step) returns an iterator from a to b, counting by step.
+function range(a, b, step)
+  if not b then
+    b = a
+    a = 1
+  end
+  step = step or 1
+  local f = step > 0 and function(_, lastvalue)
+    local nextvalue = lastvalue + step
+    if nextvalue <= b then return nextvalue end
+  end or step < 0 and function(_, lastvalue)
+    local nextvalue = lastvalue + step
+    if nextvalue >= b then return nextvalue end
+  end or function(_, lastvalue) return lastvalue end
+  return f, nil, a - step
 end

@@ -58,6 +58,7 @@ function moveUp()
   if note.note_value == 121 then return end
   copy_note_values(note, note_above)
   clear_row(note)
+  song.selected_line_index = song.selected_line_index - 1
 end
 
 function moveDown()
@@ -71,6 +72,7 @@ function moveDown()
 
   copy_note_values(note, note_below)
   clear_row(note)
+  song.selected_line_index = song.selected_line_index + 1
 
 end
 
@@ -93,6 +95,11 @@ end
 function selectionMoveUp()
   local song = renoise.song()
   song.selection_in_pattern = move_selection(-1)
+
+  local sp = song.selection_in_pattern
+
+  for l in range(sp.start_line + 1, sp.end_line) do print(l) end
+
 end
 
 function moveRight()
@@ -104,19 +111,8 @@ function moveRight()
   local note_right = get_right_note()
 
   if note.note_value == 121 then return end
-
-  note_right.note_value = note.note_value
-  note.note_value = 121
-
-  note_right.instrument_value = note.instrument_value
-  note_right.volume_value = note.volume_value
-  note_right.panning_value = note.panning_value
-  note_right.delay_value = note.delay_value
-
-  note.instrument_value = 255
-  note.volume_value = 255
-  note.panning_value = 255
-  note.delay_value = 0
+  copy_note_values(note, note_right)
+  clear_row(note)
 
 end
 
@@ -129,16 +125,6 @@ function moveLeft()
 
   if note.note_value == 121 then return end
 
-  note_left.note_value = note.note_value
-  note.note_value = 121
-
-  note_left.instrument_value = note.instrument_value
-  note_left.volume_value = note.volume_value
-  note_left.panning_value = note.panning_value
-  note_left.delay_value = note.delay_value
-
-  note.instrument_value = 255
-  note.volume_value = 255
-  note.panning_value = 255
-  note.delay_value = 0
+  copy_note_values(note, note_left)
+  clear_row(note)
 end
