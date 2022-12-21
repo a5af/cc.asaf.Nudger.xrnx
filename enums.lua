@@ -1,7 +1,7 @@
 -- VALID VOLUME COMMANDS:  G U D I O B Q R Y C
 -- VALID PAN COMMANDS: G U D J K B Q R Y C
 -- TODO: implement enums
-LINE_FIELDS = enum({"NOTE", "INST", "VOL", "PAN", "DLY", "FX"});
+LINE_FIELDS = enum({"NOTE", "INST", "VOL", "PAN", "DLY", "FX_NUM", "FX_AMT"});
 
 EFFECT_COMMANDS = enum({
 
