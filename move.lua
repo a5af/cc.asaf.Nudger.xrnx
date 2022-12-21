@@ -98,16 +98,17 @@ function selectionMoveUp()
 
   local sp = song.selection_in_pattern
   local cur = get_cur_line_track_col_pattern()
+
   local first_line =
-    song.patterns[cut.pattern].tracks[cur.track].lines[sp.start_line]
+    song.patterns[cur.pattern].tracks[cur.track].lines[sp.start_line]
 
   for l in range(sp.start_line + 1, sp.end_line) do
-    song.patterns[cut.pattern].tracks[cur.track].lines[sp.start_line] =
-      song.patterns[cut.pattern].tracks[cur.track].lines[l]
+    song.patterns[cur.pattern].tracks[cur.track].lines[sp.start_line] =
+      song.patterns[cur.pattern].tracks[cur.track].lines[l]
   end
 
-  song.patterns[cut.pattern].tracks[cur.track].lines[sp.end_line] =
-    song.patterns[cut.pattern].tracks[cur.track].lines[sp.end_line - 1]
+  song.patterns[cur.pattern].tracks[cur.track].lines[sp.end_line] =
+    song.patterns[cur.pattern].tracks[cur.track].lines[sp.end_line - 1]
 
 end
 
