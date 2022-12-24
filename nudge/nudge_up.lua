@@ -15,8 +15,7 @@ function nudgeUp()
   local subcol = get_current_subcol()
   local note = get_current_note()
 
-  -- NUDGE UP NOTE
-  if subcol == 1 then
+  if subcol == SUBCOL.NOTE then
     -- Max is 119 B-9
     if note ~= nil then
       if note.note_value < 121 then

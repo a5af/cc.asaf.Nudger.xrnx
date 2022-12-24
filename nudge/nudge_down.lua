@@ -18,8 +18,7 @@ function nudgeDown()
   local subcol = get_current_subcol()
   local note = get_current_note()
 
-  -- NUDGE DOWN NOTE
-  if subcol == 1 then
+  if subcol == SUBCOL.NOTE then
     if note ~= nil then
       if note.note_value > 1 then
         note.note_value = (note.note_value - 1)
@@ -29,8 +28,7 @@ function nudgeDown()
     end
   end
 
-  -- NUDGE DOWN INSTRUMENT
-  if subcol == 2 then
+  if subcol == SUBCOL.INST then
     if note.instrument_value < 255 and note.instrument_value > 0 then
       note.instrument_value = note.instrument_value - 1
     elseif note.instrument_value == 255 then -- blank
@@ -40,8 +38,7 @@ function nudgeDown()
     end
   end
 
-  -- NUDGE DOWN VOL
-  if subcol == 3 then
+  if subcol == SUBCOL.VOL then
     if note.volume_value == 0xFF then -- is it blank?
       note.volume_value = 0x7F
     elseif note.volume_value == 0 then
@@ -63,8 +60,7 @@ function nudgeDown()
     end
   end
 
-  -- NUDGE DOWN PAN
-  if subcol == 4 then
+  if subcol == SUBCOL.PAN then
     if note.panning_value == 0xFF then -- is it blank?
       note.panning_value = 0x7F
     elseif note.panning_value == 0 then
@@ -90,8 +86,7 @@ function nudgeDown()
     end
   end
 
-  -- NUDGE DOWN DLY
-  if subcol == 5 then
+  if subcol == SUBCOL.DLY then
     if note.delay_value > 0 then
       note.delay_value = note.delay_value - 1
     else
@@ -99,13 +94,11 @@ function nudgeDown()
     end
   end
 
-  -- NUDGE DOWN FX NUMBER
-  if subcol == 6 then
+  if subcol == SUBCOL.FX_NUM then
     note.effect_number_value = get_next_effect_number(note.effect_number_value)
   end
 
-  -- NUDGE DOWN FX AMOUNT
-  if subcol == 7 then
+  if subcol == SUBCOL.FX_AMT then
     if note.effect_amount_value > 0 then
       note.effect_amount_value = note.effect_amount_value - 1
     else

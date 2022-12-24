@@ -230,6 +230,14 @@ end
 function get_phrase()
   local song = renoise.song()
 
+  local cur_instrument = song.selected_instrument_index
   local cur_phrase = song.selected_phrase_index
+
+  local Y = renoise.app().window.instrument_box_is_visible
+  print(Y)
+
+  -- oprint(cur_phrase)
+  local phrase = song.instruments[cur_instrument]:phrase(cur_phrase)
+  -- oprint(phrase)
 
 end
