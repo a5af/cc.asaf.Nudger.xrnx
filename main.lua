@@ -128,7 +128,7 @@ function get_phrase()
 
   local cur = get_cur_line_track_col_pattern_inst_phrase()
 
-  for (k, v) in 
+  -- for (k, v) in 
   -- renoise.song().patterns[].tracks[].lines[].effect_columns[].is_selected
   -- renoise.song().patterns[].tracks[].lines[].note_columns[].is_selected
   -- print(Y)
