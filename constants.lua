@@ -2,8 +2,6 @@
 -- VALID PAN COMMANDS: G U D J K B Q R Y C
 LINE_FIELDS = enum({"NOTE", "INST", "VOL", "PAN", "DLY", "FX_NUM", "FX_AMT"});
 
-SUBCOL = {NOTE = 1, INST = 2, VOL = 3, PAN = 4, DLY = 5, FX_NUM = 6, FX_AMT = 7}
-
 EFFECT_COMMANDS = enum({
 
   -- PAN AND VOLUME
