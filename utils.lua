@@ -70,6 +70,8 @@ function copy_note_values(src, dest)
   dest.effect_amount_value = src.effect_amount_value
 end
 
+function note_col_is_blank() end
+
 function cache_note(note) CACHE_note = note end
 
 function clear_row(dest)
