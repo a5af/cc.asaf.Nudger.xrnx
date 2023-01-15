@@ -70,11 +70,9 @@ function copy_note_values(src, dest)
   dest.effect_amount_value = src.effect_amount_value
 end
 
-function note_col_is_blank() end
-
 function cache_note(note) CACHE_note = note end
 
-function clear_row(dest)
+function clear_note_values(dest)
   dest.note_value = 121
   dest.instrument_value = 255
   dest.volume_value = 255
@@ -84,12 +82,33 @@ function clear_row(dest)
   dest.effect_amount_value = 0
 end
 
+function move_selection(x, y)
+  local song = renoise.song()
+  local sp = song.selection_in_pattern
+  return {
+    start_line = sp.start_line + y,
+    end_line = sp.end_line + y,
+    start_track = sp.start_track,
+    end_track = sp.end_track,
+    start_column = sp.start_column + x,
+    end_column = sp.end_column + x
+  }
+end
+
 function get_table_size(t)
   local count = 0
   for _, __ in pairs(t) do count = count + 1 end
   return count
 end
 
+function is_note_col_blank(note_col)
+  return note_col.note_value == 121 and note_col.instrument_value == 255 and
+           note_col.volume_value == 255 and note_col.panning_value == 255 and
+           note_col.delay_value == 0 and note_col.effect_number_value == 0 and
+           note_col.effect_amount_value == 0
+end
+
+-- USAGE
 -- range(a) returns an iterator from 1 to a (step = 1)
 -- range(a, b) returns an iterator from a to b (step = 1)
 -- range(a, b, step) returns an iterator from a to b, counting by step.
