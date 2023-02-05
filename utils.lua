@@ -82,10 +82,10 @@ function clear_note_values(dest)
   dest.effect_amount_value = 0
 end
 
-function move_selection(x, y)
+function move_selection(x, y, sp)
   local song = renoise.song()
-  local sp = song.selection_in_pattern
-  return {
+  move_values_in_selection(x, y, sp)
+  song.selection_in_pattern = {
     start_line = sp.start_line + y,
     end_line = sp.end_line + y,
     start_track = sp.start_track,
@@ -94,6 +94,8 @@ function move_selection(x, y)
     end_column = sp.end_column + x
   }
 end
+
+function move_values_in_selection(x, y, sp) end
 
 function get_table_size(t)
   local count = 0

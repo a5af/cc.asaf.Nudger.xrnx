@@ -1,11 +1,8 @@
 _AUTO_RELOAD_DEBUG = function() print("tools reloaded") end
 
 require 'utils'
-local song
-function initSongRef() if renoise and renoise.song then song = renoise.song() end end
-initSongRef()
-
 function get_current_subcol()
+  local song = renoise.song()
   if not song.selected_note_column then return end
   return song.selected_sub_column_type
 end
@@ -27,6 +24,7 @@ function get_prev_effect_number(effect_number)
 end
 
 function get_cur_line_track_col_pattern_inst_phrase()
+  local song = renoise.song()
   return {
     line = song.selected_line_index,
     track = song.selected_track_index,
@@ -41,20 +39,20 @@ end
 function get_current_note()
   local cur = get_cur_line_track_col_pattern_inst_phrase()
   return
-    song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
+    renoise.song().patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
       cur.note_col)
 end
 
 function get_current_selected()
   local cur = get_cur_line_track_col_pattern_inst_phrase()
-  if song.selected_note_column then
+  if renoise.song().selected_note_column then
     return
-      song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
+      renoise.song().patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
         cur.note_col)
   end
-  if song.selected_effect_column then
+  if renoise.song().selected_effect_column then
     return
-      song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:effect_column(
+      renoise.song().patterns[cur.pattern].tracks[cur.track].lines[cur.line]:effect_column(
         cur.effect_col)
   end
 end
@@ -68,12 +66,12 @@ function get_left_note()
     cur.note_col = cur.note_col - 1
   end
   return
-    song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
+    renoise.song().patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
       cur.note_col)
 end
 
 function get_right_note()
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local cur = get_cur_line_track_col_pattern_inst_phrase()
   if cur.note_col == get_col_count() - 1 then
     if cur.track == get_track_count() - 1 then return end
@@ -82,7 +80,7 @@ function get_right_note()
     cur.note_col = cur.note_col - 1
   end
   return
-    song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
+    renoise.song().patterns[cur.pattern].tracks[cur.track].lines[cur.line]:note_column(
       cur.note_col)
 
 end
@@ -94,32 +92,33 @@ function get_above_note()
 end
 
 function get_above_line()
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local cur = get_cur_line_track_col_pattern_inst_phrase()
-  local above_line_idx = song.selected_line_index - 1
-  return song.patterns[cur.pattern].tracks[cur.track].lines[above_line_idx]
+  local above_line_idx = renoise.song().selected_line_index - 1
+  return
+    renoise.song().patterns[cur.pattern].tracks[cur.track].lines[above_line_idx]
 end
 
 function get_line_count()
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local cur = get_cur_line_track_col_pattern_inst_phrase()
-  return get_table_size(song.patterns[cur.pattern].tracks[cur.track].lines)
+  return get_table_size(renoise.song().patterns[cur.pattern].tracks[cur.track]
+                          .lines)
 end
 
 function get_track_count()
 
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local cur = get_cur_line_track_col_pattern_inst_phrase()
-  return get_table_size(song.patterns[cur.pattern].tracks)
+  return get_table_size(renoise.song().patterns[cur.pattern].tracks)
 end
 
 function get_col_count()
 
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local cur = get_cur_line_track_col_pattern_inst_phrase()
-  return get_table_size(
-           song.patterns[cur.pattern].tracks[cur.track].lines[cur.line]
-             .note_columns)
+  return get_table_size(renoise.song().patterns[cur.pattern].tracks[cur.track]
+                          .lines[cur.line].note_columns)
 end
 
 function get_below_note()
@@ -129,10 +128,11 @@ function get_below_note()
 end
 
 function get_below_line()
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local cur = get_cur_line_track_col_pattern_inst_phrase()
-  local below_line = song.selected_line_index + 1
-  return song.patterns[cur.pattern].tracks[cur.track].lines[below_line]
+  local below_line = renoise.song().selected_line_index + 1
+  return
+    renoise.song().patterns[cur.pattern].tracks[cur.track].lines[below_line]
 end
 
 -- NUDGE UP
@@ -146,7 +146,7 @@ renoise.tool():add_menu_entry{
   invoke = function() nudgeUp() end
 }
 function nudgeUp()
-  local subcol = song.selected_sub_column_type
+  local subcol = renoise.song().selected_sub_column_type
   local sel = get_current_selected()
 
   if subcol == renoise.Song.SUB_COLUMN_NOTE then
@@ -246,7 +246,7 @@ renoise.tool():add_menu_entry{
 }
 
 function nudgeDown()
-  local subcol = song.selected_sub_column_type
+  local subcol = renoise.song().selected_sub_column_type
   local sel = get_current_selected()
 
   if subcol == renoise.Song.SUB_COLUMN_NOTE then
@@ -344,7 +344,7 @@ renoise.tool():add_keybinding{
 }
 
 function clear()
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local subcol = get_current_subcol()
   local note = get_current_note()
   clear_note_values(note)
@@ -391,6 +391,7 @@ renoise.tool():add_keybinding{
 }
 
 function moveUp()
+  local song = renoise.song()
   local cur = get_cur_line_track_col_pattern_inst_phrase()
   if cur.line < 2 then return end
   if song.selected_note_column then moveUpNote() end
@@ -405,6 +406,7 @@ function moveUpNote()
 end
 
 function moveUpIntoLeftmostEmptyColumn(src_note)
+  local song = renoise.song()
   local line_above = get_above_line()
   local insertIntoCol
   for k, v in pairs(line_above.note_columns) do
@@ -430,6 +432,7 @@ end
 
 function moveDown()
   local cur = get_cur_line_track_col_pattern_inst_phrase()
+  local song = renoise.song()
   if cur.line >= get_line_count() then return end
   if song.selected_note_column then moveDownNote() end
   if song.selected_effect_column then moveDownEffect() end
@@ -444,6 +447,7 @@ function moveDownNote()
 end
 
 function moveDownIntoLeftmostEmptyColumn(src_note)
+  local song = renoise.song()
   local line_below = get_below_line()
   local insertIntoCol
   for k, v in pairs(line_below.note_columns) do
@@ -468,6 +472,7 @@ function moveDownAllNotesAndEffects()
 end
 
 function selectionMoveDown()
+  local song = renoise.song()
   local sp = song.selection_in_pattern
   local cur = get_cur_line_track_col_pattern_inst_phrase()
   local num_lines = song.patterns[cur.pattern].number_of_lines
@@ -475,39 +480,41 @@ function selectionMoveDown()
   if sp.end_line > num_lines - 1 then
     print('too big')
     return
+
   end
-  song.selection_in_pattern = move_selection(0, 1)
+  move_selection(0, 1, sp)
 end
 
 function selectionMoveUp()
+  local song = renoise.song()
   local sp = song.selection_in_pattern
   if sp.start_line < 2 then
     print('too small')
     return
   end
-  song.selection_in_pattern = move_selection(0, -1)
+  move_selection(0, -1, sp)
   print(sp.start_line)
 end
 
 function selectionMoveLeft()
-  local sp = song.selection_in_pattern
+  local sp = renoise.song().selection_in_pattern
   if sp.start_column < 2 then
     print('too small')
 
     return
   end
-  song.selection_in_pattern = move_selection(-1, 0)
+  move_selection(-1, 0, sp)
   print(sp.start_line)
 end
 
 function selectionMoveRight()
-  local sp = song.selection_in_pattern
+  local sp = renoise.song().selection_in_pattern
   print('col count', get_col_count())
   if sp.start_column > get_col_count() then
     print('too large')
     return
   end
-  song.selection_in_pattern = move_selection(1, 0)
+  move_selection(1, 0, sp)
   print(sp.start_line)
 end
 
@@ -521,7 +528,7 @@ function moveRight()
 end
 
 function moveLeft()
-  if not song.selected_note_column then return end
+  if not renoise.song().selected_note_column then return end
   local subcol = get_current_subcol()
   local note = get_current_note()
   local note_left = get_left_note()
