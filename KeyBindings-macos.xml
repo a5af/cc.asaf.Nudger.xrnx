@@ -819,8 +819,28 @@
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Nudge Up</Binding>
-          <Key>Option + Up</Key>
+          <Binding>∿ cc.asaf Clone Up</Binding>
+          <Key>Prior</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clone Down</Binding>
+          <Key>Next</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clone Left</Binding>
+          <Key>Home</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clone Right</Binding>
+          <Key>End</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ cc.asaf Clear</Binding>
+          <Key>Option + Back</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
@@ -829,8 +849,8 @@
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Clear</Binding>
-          <Key>Option + Back</Key>
+          <Binding>∿ cc.asaf Nudge Up</Binding>
+          <Key>Option + Up</Key>
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
@@ -854,27 +874,19 @@
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Clone Up</Binding>
-          <Key>Prior</Key>
-        </KeyBinding>
-        <KeyBinding>
-          <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Clone Down</Binding>
-          <Key>Next</Key>
-        </KeyBinding>
-        <KeyBinding>
-          <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Clone Left</Binding>
-          <Key>Home</Key>
-        </KeyBinding>
-        <KeyBinding>
-          <Topic>Tools</Topic>
-          <Binding>∿ cc.asaf Clone Right</Binding>
-          <Key>End</Key>
-        </KeyBinding>
-        <KeyBinding>
-          <Topic>Tools</Topic>
           <Binding>∿ Speed Bar...</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Simple Pianoroll</Topic>
+          <Binding>∿ Edit with Simple Pianoroll ...</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Simple Pianoroll</Topic>
+          <Binding>∿ Open/Close current plugin instrument editor ...</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Simple Pianoroll</Topic>
+          <Binding>∿ Close piano roll and switch to mixer view ...</Binding>
         </KeyBinding>
         <KeyBinding>
           <Topic>Tools</Topic>
@@ -2249,6 +2261,23 @@
         <KeyBinding>
           <Topic>Options</Topic>
           <Binding>Toggle Show Track Colors</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Selection</Topic>
+          <Binding>∿ Clear</Binding>
+          <Key>Command + Escape</Key>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Tools</Topic>
+          <Binding>∿ Edit with Simple Pianoroll ...</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Selection</Topic>
+          <Binding>∿ Playback Loop Selection</Binding>
+        </KeyBinding>
+        <KeyBinding>
+          <Topic>Selection</Topic>
+          <Binding>∿ Unmark Selection</Binding>
         </KeyBinding>
         <KeyBinding>
           <Topic>Selection</Topic>

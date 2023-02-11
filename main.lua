@@ -135,16 +135,6 @@ function get_below_line()
     renoise.song().patterns[cur.pattern].tracks[cur.track].lines[below_line]
 end
 
--- NUDGE UP
-renoise.tool():add_keybinding{
-  name = "Global:Tools:cc.asaf Nudge Up",
-  invoke = function() nudgeUp() end
-}
-
-renoise.tool():add_menu_entry{
-  name = "Main Menu:Tools:cc.asaf:Nudge Up",
-  invoke = function() nudgeUp() end
-}
 function nudgeUp()
   local subcol = renoise.song().selected_sub_column_type
   local sel = get_current_selected()
@@ -233,17 +223,6 @@ function nudgeUp()
   if subcol == renoise.Song.SUB_COLUMN_EFFECT_NUMBER then print('fx num') end
   if subcol == renoise.Song.SUB_COLUMN_EFFECT_AMOUNT then print('fx amt') end
 end
-
--- NUDGE DOWN
-renoise.tool():add_keybinding{
-  name = "Global:Tools:cc.asaf Nudge Down",
-  invoke = function() nudgeDown() end
-}
-
-renoise.tool():add_menu_entry{
-  name = "Main Menu:Tools:cc.asaf:Nudge Down",
-  invoke = function() nudgeDown() end
-}
 
 function nudgeDown()
   local subcol = renoise.song().selected_sub_column_type
@@ -337,11 +316,75 @@ function nudgeDown()
   if subcol == renoise.Song.SUB_COLUMN_EFFECT_AMOUNT then print('fx amt') end
 end
 
--- CLEAR
-renoise.tool():add_keybinding{
-  name = "Global:Tools:cc.asaf Clear",
-  invoke = function() clear() end
-}
+function init_keybindings()
+  -- CLEAR
+  renoise.tool():add_keybinding{
+    name = "Global:Tools:cc.asaf Clear",
+    invoke = function() clear() end
+  }
+
+  -- NUDGE DOWN
+  renoise.tool():add_keybinding{
+    name = "Global:Tools:cc.asaf Nudge Down",
+    invoke = function() nudgeDown() end
+  }
+
+  renoise.tool():add_menu_entry{
+    name = "Main Menu:Tools:cc.asaf:Nudge Down",
+    invoke = function() nudgeDown() end
+  }
+
+  -- NUDGE UP
+  renoise.tool():add_keybinding{
+    name = "Global:Tools:cc.asaf Nudge Up",
+    invoke = function() nudgeUp() end
+  }
+
+  renoise.tool():add_menu_entry{
+    name = "Main Menu:Tools:cc.asaf:Nudge Up",
+    invoke = function() nudgeUp() end
+  }
+
+  -- MOVE UP
+  renoise.tool():add_keybinding{
+    name = "Global:Tools:cc.asaf Move Up",
+    invoke = function()
+      local s = renoise.song().selection_in_pattern
+      if s ~= nil then return selectionMoveUp() end
+      moveUp()
+    end
+  }
+
+  -- MOVE DOWN
+  renoise.tool():add_keybinding{
+    name = "Global:Tools:cc.asaf Move Down",
+    invoke = function()
+      local s = renoise.song().selection_in_pattern
+      if s ~= nil then return selectionMoveDown() end
+      moveDown()
+    end
+  }
+
+  -- MOVE LEFT
+  renoise.tool():add_keybinding{
+    name = "Global:Tools:cc.asaf Move Left",
+    invoke = function()
+      local s = renoise.song().selection_in_pattern
+      if s ~= nil then return selectionMoveLeft() end
+      moveLeft()
+    end
+  }
+
+  -- MOVE RIGHT
+  renoise.tool():add_keybinding{
+    name = "Global:Tools:cc.asaf Move Right",
+    invoke = function()
+      local s = renoise.song().selection_in_pattern
+      if s ~= nil then return selectionMoveRight() end
+      moveRight()
+    end
+  }
+end
 
 function clear()
   if not renoise.song().selected_note_column then return end
@@ -349,46 +392,6 @@ function clear()
   local note = get_current_note()
   clear_note_values(note)
 end
-
--- MOVE UP
-renoise.tool():add_keybinding{
-  name = "Global:Tools:cc.asaf Move Up",
-  invoke = function()
-    local s = renoise.song().selection_in_pattern
-    if s ~= nil then return selectionMoveUp() end
-    moveUp()
-  end
-}
-
--- MOVE DOWN
-renoise.tool():add_keybinding{
-  name = "Global:Tools:cc.asaf Move Down",
-  invoke = function()
-    local s = renoise.song().selection_in_pattern
-    if s ~= nil then return selectionMoveDown() end
-    moveDown()
-  end
-}
-
--- MOVE LEFT
-renoise.tool():add_keybinding{
-  name = "Global:Tools:cc.asaf Move Left",
-  invoke = function()
-    local s = renoise.song().selection_in_pattern
-    if s ~= nil then return selectionMoveLeft() end
-    moveLeft()
-  end
-}
-
--- MOVE RIGHT
-renoise.tool():add_keybinding{
-  name = "Global:Tools:cc.asaf Move Right",
-  invoke = function()
-    local s = renoise.song().selection_in_pattern
-    if s ~= nil then return selectionMoveRight() end
-    moveRight()
-  end
-}
 
 function moveUp()
   local song = renoise.song()
@@ -402,10 +405,6 @@ function moveUpNote()
   local subcol, note, note_above = get_current_subcol(), get_current_note(),
                                    get_above_note()
   if note.note_value == 121 then return end
-  moveUpIntoLeftmostEmptyColumn(note)
-end
-
-function moveUpIntoLeftmostEmptyColumn(src_note)
   local song = renoise.song()
   local line_above = get_above_line()
   local insertIntoCol
@@ -416,17 +415,13 @@ function moveUpIntoLeftmostEmptyColumn(src_note)
     end
   end
   local note_above = line_above.note_columns[insertIntoCol]
-  copy_note_values(src_note, note_above)
-  clear_note_values(src_note)
+  copy_note_values(note, note_above)
+  clear_note_values(note)
   song.selected_line_index = song.selected_line_index - 1
   song.selected_note_column_index = insertIntoCol
 end
 
 function moveUpEffect()
-  -- todo 
-end
-
-function moveUpAllNotesAndEffects()
   -- todo 
 end
 
@@ -443,10 +438,6 @@ function moveDownNote()
   local note = get_current_note()
   local note_below = get_below_note()
   if note.note_value == 121 then return end
-  moveDownIntoLeftmostEmptyColumn(note)
-end
-
-function moveDownIntoLeftmostEmptyColumn(src_note)
   local song = renoise.song()
   local line_below = get_below_line()
   local insertIntoCol
@@ -457,17 +448,14 @@ function moveDownIntoLeftmostEmptyColumn(src_note)
     end
   end
   local note_below = line_below.note_columns[insertIntoCol]
-  copy_note_values(src_note, note_below)
-  clear_note_values(src_note)
+  copy_note_values(note, note_below)
+  clear_note_values(note)
   song.selected_line_index = song.selected_line_index + 1
   song.selected_note_column_index = insertIntoCol
+
 end
 
 function moveDownEffect()
-  -- todo 
-end
-
-function moveDownAllNotesAndEffects()
   -- todo 
 end
 
@@ -476,22 +464,14 @@ function selectionMoveDown()
   local sp = song.selection_in_pattern
   local cur = get_cur_line_track_col_pattern_inst_phrase()
   local num_lines = song.patterns[cur.pattern].number_of_lines
-  print(sp.end_line, num_lines)
-  if sp.end_line > num_lines - 1 then
-    print('too big')
-    return
-
-  end
+  if sp.end_line > num_lines - 1 then return end
   move_selection(0, 1, sp)
 end
 
 function selectionMoveUp()
   local song = renoise.song()
   local sp = song.selection_in_pattern
-  if sp.start_line < 2 then
-    print('too small')
-    return
-  end
+  if sp.start_line < 2 then return end
   move_selection(0, -1, sp)
   print(sp.start_line)
 end
@@ -500,7 +480,6 @@ function selectionMoveLeft()
   local sp = renoise.song().selection_in_pattern
   if sp.start_column < 2 then
     print('too small')
-
     return
   end
   move_selection(-1, 0, sp)
@@ -543,6 +522,7 @@ require 'constants'
 require 'osc_client'
 require 'osc_server'
 
+init_keybindings()
 -- init_osc_server()
 -- init_osc_client()
 

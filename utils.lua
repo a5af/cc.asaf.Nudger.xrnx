@@ -84,7 +84,7 @@ end
 
 function move_selection(x, y, sp)
   local song = renoise.song()
-  move_values_in_selection(x, y, sp)
+  move_notes_in_selection(x, y, sp)
   song.selection_in_pattern = {
     start_line = sp.start_line + y,
     end_line = sp.end_line + y,
@@ -95,7 +95,7 @@ function move_selection(x, y, sp)
   }
 end
 
-function move_values_in_selection(x, y, sp) end
+function move_notes_in_selection(x, y, sp) end
 
 function get_table_size(t)
   local count = 0
