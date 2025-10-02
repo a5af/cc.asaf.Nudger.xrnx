@@ -102,6 +102,29 @@ Download the latest `.xrnx` file from the [Releases page](https://github.com/asa
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history and migration guides.
 
+## Development
+
+### Testing
+
+The project includes an automated test suite using [Busted](https://lunarmodules.github.io/busted/):
+
+```bash
+# Install Busted
+luarocks install busted
+
+# Run tests
+busted
+
+# Run with coverage
+busted --coverage
+```
+
+See [tests/README.md](tests/README.md) for detailed testing documentation.
+
+### Contributing
+
+See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for architecture and contribution guidelines.
+
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/asafebgi/cc.asaf.Nudger.xrnx/issues)
