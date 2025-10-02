@@ -206,12 +206,9 @@ function Clone.clone_left()
         -- Moving within same track
         song.selected_note_column_index = context.note_col - 1
       elseif context.track > 1 then
-        -- Moving to previous track, last column
+        -- Moving to previous track, last visible column
         song.selected_track_index = context.track - 1
-        local pattern = song.patterns[context.pattern]
-        local track = pattern.tracks[context.track - 1]
-        local line = track.lines[context.line]
-        song.selected_note_column_index = #line.note_columns
+        song.selected_note_column_index = song.tracks[context.track - 1].visible_note_columns
       end
     end
   end

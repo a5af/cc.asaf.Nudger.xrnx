@@ -250,12 +250,9 @@ function Move.move_left()
     -- Moving within same track
     song.selected_note_column_index = context.note_col - 1
   elseif context.track > 1 then
-    -- Moving to previous track, last column
+    -- Moving to previous track, last visible column
     song.selected_track_index = context.track - 1
-    local pattern = song.patterns[context.pattern]
-    local track = pattern.tracks[context.track - 1]
-    local line = track.lines[context.line]
-    song.selected_note_column_index = #line.note_columns
+    song.selected_note_column_index = song.tracks[context.track - 1].visible_note_columns
   end
 
   ErrorHandler.trace_exit("Move.move_left", true)
@@ -305,11 +302,9 @@ function Move.move_right()
   -- Update cursor to follow moved note
   local song = renoise.song()
   local pattern = song.patterns[context.pattern]
-  local track = pattern.tracks[context.track]
-  local line = track.lines[context.line]
-  local col_count = #line.note_columns
+  local visible_cols = song.tracks[context.track].visible_note_columns
 
-  if context.note_col < col_count then
+  if context.note_col < visible_cols then
     -- Moving within same track
     song.selected_note_column_index = context.note_col + 1
   elseif context.track < #pattern.tracks then

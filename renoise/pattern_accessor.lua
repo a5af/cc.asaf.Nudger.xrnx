@@ -197,11 +197,7 @@ end
 -- @param context: Context table
 -- @return boolean
 function PatternAccessor.can_move_right(context)
-  local success, err = Validator.validate_line_exists(
-    context.pattern,
-    context.track,
-    context.line
-  )
+  local success, err = Validator.validate_track_exists(context.pattern, context.track)
   if not success then
     return false
   end
@@ -209,10 +205,9 @@ function PatternAccessor.can_move_right(context)
   local song = renoise.song()
   local pattern = song.patterns[context.pattern]
   local track = pattern.tracks[context.track]
-  local line = track.lines[context.line]
-  local col_count = #line.note_columns
+  local visible_cols = song.tracks[context.track].visible_note_columns
 
-  if context.note_col and context.note_col < col_count then
+  if context.note_col and context.note_col < visible_cols then
     return true
   end
 
@@ -281,13 +276,10 @@ function PatternAccessor.get_note_column_left(context)
     -- Move within same track
     new_context.note_col = context.note_col - 1
   elseif context.track > 1 then
-    -- Move to previous track, last column
+    -- Move to previous track, last visible column
     new_context.track = context.track - 1
     local song = renoise.song()
-    local pattern = song.patterns[new_context.pattern]
-    local track = pattern.tracks[new_context.track]
-    local line = track.lines[new_context.line]
-    new_context.note_col = #line.note_columns
+    new_context.note_col = song.tracks[new_context.track].visible_note_columns
   else
     return nil, "Already at leftmost column"
   end
@@ -305,9 +297,7 @@ function PatternAccessor.get_note_column_right(context)
 
   local song = renoise.song()
   local pattern = song.patterns[context.pattern]
-  local track = pattern.tracks[context.track]
-  local line = track.lines[context.line]
-  local col_count = #line.note_columns
+  local visible_cols = song.tracks[context.track].visible_note_columns
 
   local new_context = {
     pattern = context.pattern,
@@ -316,7 +306,7 @@ function PatternAccessor.get_note_column_right(context)
     note_col = context.note_col
   }
 
-  if context.note_col < col_count then
+  if context.note_col < visible_cols then
     -- Move within same track
     new_context.note_col = context.note_col + 1
   elseif context.track < #pattern.tracks then
@@ -365,16 +355,17 @@ function PatternAccessor.get_track_count(context)
   return #pattern.tracks
 end
 
--- Get note column count in current line
+-- Get note column count (visible) in current track
 -- @param context: Context table
 -- @return column_count or 0
 function PatternAccessor.get_note_column_count(context)
-  local line, err = PatternAccessor.get_line(context)
-  if not line then
+  local success, err = Validator.validate_track_exists(context.pattern, context.track)
+  if not success then
     return 0
   end
 
-  return #line.note_columns
+  local song = renoise.song()
+  return song.tracks[context.track].visible_note_columns
 end
 
 return PatternAccessor

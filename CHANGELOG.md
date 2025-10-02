@@ -5,6 +5,20 @@ All notable changes to Note Properties (Nudger) will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.4-beta] - 2025-10-01 - Respect Visible Note Columns
+
+### Fixed
+- **Critical**: Operations now respect visible_note_columns instead of all columns
+  - Pattern accessor uses track.visible_note_columns for navigation
+  - Phrase accessor uses phrase.visible_note_columns for navigation
+  - Move/clone left/right honor UI visibility settings
+  - Cursor positioning uses visible columns only
+
+### Changed
+- get_note_column_count() now returns visible column count
+- can_move_right() checks against visible columns
+- Cross-track navigation uses visible columns for positioning
+
 ## [2.0.3-beta] - 2025-10-01 - Fix Move/Clone Left/Right
 
 ### Fixed

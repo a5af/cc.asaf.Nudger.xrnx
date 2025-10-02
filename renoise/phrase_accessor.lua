@@ -192,10 +192,9 @@ function PhraseAccessor.can_move_right(context)
   end
 
   local phrase = context.phrase
-  local line = phrase.lines[context.line]
-  local col_count = #line.note_columns
+  local visible_cols = phrase.visible_note_columns
 
-  if context.note_col and context.note_col < col_count then
+  if context.note_col and context.note_col < visible_cols then
     return true
   end
 
@@ -268,10 +267,9 @@ function PhraseAccessor.get_note_column_right(context)
   end
 
   local phrase = context.phrase
-  local line = phrase.lines[context.line]
-  local col_count = #line.note_columns
+  local visible_cols = phrase.visible_note_columns
 
-  if context.note_col >= col_count then
+  if context.note_col >= visible_cols then
     return nil, "Already at rightmost column"
   end
 
@@ -300,16 +298,16 @@ function PhraseAccessor.get_line_count(context)
   return context.phrase.number_of_lines
 end
 
--- Get note column count in current phrase line
+-- Get note column count (visible) in current phrase
 -- @param context: Context table
 -- @return column_count or 0
 function PhraseAccessor.get_note_column_count(context)
-  local line, err = PhraseAccessor.get_line(context)
-  if not line then
+  local success, err = Validator.validate_phrase_selected()
+  if not success then
     return 0
   end
 
-  return #line.note_columns
+  return context.phrase.visible_note_columns
 end
 
 return PhraseAccessor
