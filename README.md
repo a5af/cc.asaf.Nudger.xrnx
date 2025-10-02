@@ -17,7 +17,7 @@ A Renoise tool for keyboard-centric note manipulation in pattern and phrase edit
 
 ## Installation
 
-1. **Download** the latest release `.xrnx` file
+1. **Download** the latest release `.xrnx` file from [Releases](https://github.com/asafebgi/cc.asaf.Nudger.xrnx/releases)
 2. **Locate** your Renoise tools directory:
    - **Windows**: `%APPDATA%\Renoise\V3.5.0\Scripts\Tools\`
    - **macOS**: `~/Library/Preferences/Renoise/V3.5.0/Scripts/Tools/`

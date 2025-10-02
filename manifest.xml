@@ -3,10 +3,10 @@
   <ApiVersion>6</ApiVersion>
   <AutoUpgraded>true</AutoUpgraded>
   <Id>cc.asaf.Nudger</Id>
-  <Version>1.1000000000000001</Version>
-  <Author>scripts</Author>
+  <Version>2.0</Version>
+  <Author>Asaf Ebgi</Author>
   <Name>Note Properties</Name>
-  <Category>In Progress</Category>
-  <Description>Nudge various properties of a note through keybindings</Description>
+  <Category>Pattern Editor</Category>
+  <Description>Keyboard-centric note manipulation for pattern and phrase editors. Nudge, move, clone, and clear note properties with comprehensive error handling and Renoise 3.5 support.</Description>
   <Homepage>https://asaf.cc</Homepage>
 </RenoiseScriptingTool>
