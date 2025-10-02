@@ -1,4 +1,9 @@
-_AUTO_RELOAD_DEBUG = function() print("tools reloaded") end
+_AUTO_RELOAD_DEBUG = function()
+  -- Cleanup on reload
+  local InputTracker = require('renoise/input_tracker')
+  InputTracker.cleanup()
+  print("tools reloaded")
+end
 
 -- ============================================================================
 -- Initialize Core Modules (Phase 1: Foundation)
@@ -22,6 +27,30 @@ ErrorHandler.debug("Configuration loaded", {
   debug_mode = ConfigManager.is_debug_mode(),
   osc_enabled = ConfigManager.is_osc_enabled()
 })
+
+-- ============================================================================
+-- Initialize Input Tracking (Phase 2: Input Context)
+-- ============================================================================
+
+local InputTracker = require('renoise/input_tracker')
+
+-- Initialize when song is loaded
+local function init_input_tracker()
+  if renoise.song() then
+    InputTracker.initialize()
+    ErrorHandler.debug("Input tracking initialized")
+  end
+end
+
+-- Initialize now if song is loaded
+init_input_tracker()
+
+-- Re-initialize when new song is loaded
+renoise.tool().app_new_document_observable:add_notifier(function()
+  ErrorHandler.debug("New document loaded, re-initializing input tracker")
+  InputTracker.cleanup()
+  init_input_tracker()
+end)
 
 -- ============================================================================
 -- Phase 3: Operation Modules

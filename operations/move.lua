@@ -15,6 +15,7 @@ local Validator = require('core/validator')
 local ErrorHandler = require('core/error_handler')
 local ConfigManager = require('core/config_manager')
 local Context = require('renoise/context')
+local InputTracker = require('renoise/input_tracker')
 local PatternAccessor = require('renoise/pattern_accessor')
 local PhraseAccessor = require('renoise/phrase_accessor')
 local SelectionAccessor = require('renoise/selection_accessor')
@@ -76,8 +77,8 @@ end
 function Move.move_up()
   ErrorHandler.trace_enter("Move.move_up")
 
-  -- Check for selection
-  if Context.has_selection() then
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
     return Move.move_selection_up()
   end
 
@@ -142,8 +143,8 @@ end
 function Move.move_down()
   ErrorHandler.trace_enter("Move.move_down")
 
-  -- Check for selection
-  if Context.has_selection() then
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
     return Move.move_selection_down()
   end
 
@@ -208,8 +209,8 @@ end
 function Move.move_left()
   ErrorHandler.trace_enter("Move.move_left")
 
-  -- Check for selection
-  if Context.has_selection() then
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
     return Move.move_selection_left()
   end
 
@@ -263,8 +264,8 @@ end
 function Move.move_right()
   ErrorHandler.trace_enter("Move.move_right")
 
-  -- Check for selection
-  if Context.has_selection() then
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
     return Move.move_selection_right()
   end
 

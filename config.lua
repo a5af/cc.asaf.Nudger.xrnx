@@ -68,6 +68,32 @@ return {
   },
 
   -- ============================================================================
+  -- Input Tracking Settings
+  -- ============================================================================
+
+  -- Input mode for cursor vs selection operations
+  -- Options:
+  --   "AUTO": Automatically detect user intent based on last input
+  --   "CURSOR_ONLY": Always use cursor operations (ignore selection)
+  --   "SELECTION_ONLY": Always use selection operations when selection exists
+  input_mode = "AUTO",
+
+  -- How long to remember last input type (milliseconds)
+  -- After this timeout, input type becomes unknown
+  -- Recommended: 500-1000ms
+  input_timeout_ms = 500,
+
+  -- Auto-select moved notes after move selection
+  -- When true: selection follows moved notes
+  -- When false: selection stays in place
+  auto_select_moved_notes = true,
+
+  -- Auto-select cloned notes after clone selection
+  -- When true: selection moves to cloned notes
+  -- When false: selection stays on original notes
+  auto_select_cloned_notes = true,
+
+  -- ============================================================================
   -- OSC Network Settings
   -- ============================================================================
 

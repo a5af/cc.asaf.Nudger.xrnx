@@ -5,6 +5,29 @@ All notable changes to Note Properties (Nudger) will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.5-beta] - 2025-10-01 - Input Context Tracking
+
+### Added
+- **InputTracker module**: Detects cursor vs selection input intent
+  - Subscribes to Renoise observables for cursor and selection changes
+  - Tracks last input type (CURSOR or SELECTION)
+  - Configurable timeout for input memory (default 500ms)
+  - Configuration modes: AUTO, CURSOR_ONLY, SELECTION_ONLY
+  - Debug API for troubleshooting
+
+### Changed
+- Move operations now use `InputTracker.should_use_selection()`
+- Operations respect user's last input type instead of just checking if selection exists
+- Input mode configurable via `config.lua`
+
+### Configuration
+- New config: `input_mode` - Controls cursor vs selection behavior
+- New config: `input_timeout_ms` - How long to remember last input
+- New config: `auto_select_moved_notes` - Update selection after move
+- New config: `auto_select_cloned_notes` - Update selection after clone
+
+**Note**: Selection move/clone still not fully implemented (moves bounds only)
+
 ## [2.0.4-beta] - 2025-10-01 - Respect Visible Note Columns
 
 ### Fixed

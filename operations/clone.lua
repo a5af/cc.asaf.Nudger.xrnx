@@ -15,6 +15,7 @@ local Validator = require('core/validator')
 local ErrorHandler = require('core/error_handler')
 local ConfigManager = require('core/config_manager')
 local Context = require('renoise/context')
+local InputTracker = require('renoise/input_tracker')
 local PatternAccessor = require('renoise/pattern_accessor')
 local PhraseAccessor = require('renoise/phrase_accessor')
 
