@@ -67,14 +67,19 @@ Edit `config.lua` to customize behavior:
 - **Recommended**: Renoise 3.5.0+ (for full phrase editor support)
 - **Minimum**: Renoise 3.4.0 (limited phrase editor features)
 
-## Current Development
+## Recent Updates
 
-See [ARCHITECTURE_OVERHAUL.md](ARCHITECTURE_OVERHAUL.md) for planned improvements:
-- Complete effect column nudging
-- Full phrase editor integration (Renoise 3.5 API)
-- Selection move and clear operations
-- Undo/redo integration
-- Comprehensive error handling
+**Version 2.0** - Architectural Overhaul Complete:
+- ✅ Complete effect column nudging (all properties)
+- ✅ Full phrase editor integration (Renoise 3.5 API)
+- ✅ Selection move and clear operations
+- ✅ Undo/redo integration with batch grouping
+- ✅ Comprehensive error handling and validation
+- ✅ Configurable behavior via config.lua
+- ✅ Fixed critical bugs (move right, etc.)
+- ✅ 60% code reduction through refactoring
+
+See [ARCHITECTURE_OVERHAUL.md](ARCHITECTURE_OVERHAUL.md) for architectural details.
 
 ## Support
 

@@ -91,6 +91,27 @@ local PROPERTY_SPECS = {
     blank = nil,
     wrap = true,
     default = 0
+  },
+
+  -- Track effect columns
+  [renoise.Song.SUB_COLUMN_EFFECT_NUMBER] = {
+    name = "number_value",
+    field = "number_value",
+    min = Constants.EFFECT.NUMBER_MIN,
+    max = Constants.EFFECT.NUMBER_MAX,
+    blank = nil,
+    wrap = true,
+    default = 0
+  },
+
+  [renoise.Song.SUB_COLUMN_EFFECT_AMOUNT] = {
+    name = "amount_value",
+    field = "amount_value",
+    min = Constants.EFFECT.AMOUNT_MIN,
+    max = Constants.EFFECT.AMOUNT_MAX,
+    blank = nil,
+    wrap = true,
+    default = 0
   }
 }
 
