@@ -1,15 +1,85 @@
-# com.asafebgi.Nudger.xrnx
+# Note Properties (Nudger)
 
-## Renoise extension for nudging field values (Note, Inst, Vol, Pan, Dly, FX)
+A Renoise tool for keyboard-centric note manipulation in pattern and phrase editors.
 
-Use with the Tools menu or keybinding to nudge values up/down.
+![Demo](nudger.gif)
 
-Also includes move, clone, and clear field values.
+## Features
 
-![](nudger.gif)
+- **Nudge**: Increment/decrement note properties using keyboard shortcuts
+  - Note pitch, Instrument, Volume, Panning, Delay
+  - Effect number and amount
+- **Move**: Relocate notes directionally (up/down/left/right)
+  - Single notes and selections
+- **Clone**: Duplicate notes to adjacent positions
+- **Clear**: Reset note properties to blank state
+- **Works in both Pattern Editor and Phrase Editor** (Renoise 3.5+)
 
-TODO:
+## Installation
 
-- Refine nudge FX
-- Port operations to support phrase editor fields
-- move + clear selections
+1. **Download** the latest release `.xrnx` file
+2. **Locate** your Renoise tools directory:
+   - **Windows**: `%APPDATA%\Renoise\V3.5.0\Scripts\Tools\`
+   - **macOS**: `~/Library/Preferences/Renoise/V3.5.0/Scripts/Tools/`
+   - **Linux**: `~/.renoise/V3.5.0/Scripts/Tools/`
+3. **Copy** the `.xrnx` file to the tools directory
+4. **Restart** Renoise
+5. **Verify** the tool appears in `Tools > Note Properties` menu
+
+## Suggested Keyboard Shortcuts
+
+Configure in `Preferences > Keys > Tools > cc.asaf`:
+
+| Operation | Suggested Shortcut | Description |
+|-----------|-------------------|-------------|
+| **Nudge Up** | `Ctrl+Up` (Win/Linux)<br>`Cmd+Up` (macOS) | Increment current property |
+| **Nudge Down** | `Ctrl+Down` (Win/Linux)<br>`Cmd+Down` (macOS) | Decrement current property |
+| **Move Up** | `Ctrl+Shift+Up` | Move note to line above |
+| **Move Down** | `Ctrl+Shift+Down` | Move note to line below |
+| **Move Left** | `Ctrl+Shift+Left` | Move note to left column |
+| **Move Right** | `Ctrl+Shift+Right` | Move note to right column |
+| **Clone Up** | `Ctrl+Alt+Up` | Duplicate note above |
+| **Clone Down** | `Ctrl+Alt+Down` | Duplicate note below |
+| **Clone Left** | `Ctrl+Alt+Left` | Duplicate note to left |
+| **Clone Right** | `Ctrl+Alt+Right` | Duplicate note to right |
+| **Clear** | `Ctrl+Delete` (Win/Linux)<br>`Cmd+Delete` (macOS) | Clear note properties |
+
+*Note: These shortcuts work in both pattern and phrase editors*
+
+## Usage
+
+1. **Select** a note column or effect column
+2. **Position** cursor on the property you want to modify
+3. **Press** the keybinding to nudge, move, clone, or clear
+
+The tool automatically detects which property you're editing (note, instrument, volume, etc.) and adjusts accordingly.
+
+## Configuration
+
+Edit `config.lua` to customize behavior:
+- Wrapping at value boundaries
+- Auto-advance cursor after operations
+- Debug logging level
+- OSC network settings
+
+## Requirements
+
+- **Recommended**: Renoise 3.5.0+ (for full phrase editor support)
+- **Minimum**: Renoise 3.4.0 (limited phrase editor features)
+
+## Current Development
+
+See [ARCHITECTURE_OVERHAUL.md](ARCHITECTURE_OVERHAUL.md) for planned improvements:
+- Complete effect column nudging
+- Full phrase editor integration (Renoise 3.5 API)
+- Selection move and clear operations
+- Undo/redo integration
+- Comprehensive error handling
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/asafebgi/cc.asaf.Nudger.xrnx/issues)
+- **Documentation**: See `docs/` folder
+- **Source**: [GitHub Repository](https://github.com/asafebgi/cc.asaf.Nudger.xrnx)
+
+

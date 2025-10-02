@@ -1,5 +1,32 @@
 _AUTO_RELOAD_DEBUG = function() print("tools reloaded") end
 
+-- ============================================================================
+-- Initialize Core Modules (Phase 1: Foundation)
+-- ============================================================================
+
+local Constants = require('core/constants')
+local ErrorHandler = require('core/error_handler')
+local Validator = require('core/validator')
+local ConfigManager = require('core/config_manager')
+
+-- Load configuration
+ConfigManager.load()
+
+-- Set log level from config
+ErrorHandler.set_log_level(ConfigManager.get_log_level_number())
+
+-- Log startup
+ErrorHandler.info("Nudger tool initialized")
+ErrorHandler.debug("Configuration loaded", {
+  log_level = ConfigManager.get_log_level(),
+  debug_mode = ConfigManager.is_debug_mode(),
+  osc_enabled = ConfigManager.is_osc_enabled()
+})
+
+-- ============================================================================
+-- Legacy Code (to be refactored in Phase 2+)
+-- ============================================================================
+
 require 'utils'
 function get_current_subcol()
   local song = renoise.song()
@@ -8,19 +35,11 @@ function get_current_subcol()
 end
 
 function get_next_effect_number(effect_number)
-  local cur_cmd = cmd_to_cardinal[effect_number]
-  if not cur_cmd then return cardinal_to_cmd[1] end
-  local cardinal = cur_cmd + 1
-  if cardinal > #cardinal_to_cmd then cardinal = 1 end
-  return cardinal_to_cmd[cardinal]
+  return Constants.get_next_effect_number(effect_number)
 end
 
 function get_prev_effect_number(effect_number)
-  local cur_cmd = cmd_to_cardinal[effect_number]
-  if not cur_cmd then return cardinal_to_cmd[#cardinal_to_cmd] end
-  local cardinal = cur_cmd - 1
-  if cardinal < 1 then cardinal = #cardinal_to_cmd end
-  return cardinal_to_cmd[cardinal]
+  return Constants.get_prev_effect_number(effect_number)
 end
 
 function get_cur_line_track_col_pattern_inst_phrase()
@@ -517,7 +536,7 @@ function moveLeft()
 end
 
 require 'clone'
-require 'constants'
+-- Old constants.lua replaced by core/constants.lua (loaded at top)
 
 require 'osc_client'
 require 'osc_server'
