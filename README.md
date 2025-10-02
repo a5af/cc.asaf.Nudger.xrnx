@@ -71,19 +71,32 @@ Edit `config.lua` to customize behavior:
 - **Recommended**: Renoise 3.5.0+ (for full phrase editor support)
 - **Minimum**: Renoise 3.4.0 (limited phrase editor features)
 
+## Current Limitations
+
+**Selection Operations** (Work in Progress):
+- ⚠️ Selection move/clone operations are **not yet fully implemented**
+- Single note operations work correctly (cursor-based)
+- Selection operations only update selection bounds (don't move notes)
+- See [MOVING_FORWARD.md](MOVING_FORWARD.md) for implementation roadmap
+
+**Workaround**: Use single-note operations with cursor navigation for now.
+
 ## Recent Updates
 
-**Version 2.0** - Architectural Overhaul Complete:
+**Version 2.0.4-beta** - Current Status:
 - ✅ Complete effect column nudging (all properties)
 - ✅ Full phrase editor integration (Renoise 3.5 API)
-- ✅ Selection move and clear operations
+- ✅ Single note operations working (move, clone, clear)
+- ✅ Respect visible_note_columns
 - ✅ Undo/redo integration with batch grouping
 - ✅ Comprehensive error handling and validation
 - ✅ Configurable behavior via config.lua
-- ✅ Fixed critical bugs (move right, etc.)
-- ✅ 60% code reduction through refactoring
+- ✅ Test framework with Busted
+- ⚠️ **Known Issue**: Selection move/clone not yet implemented (see [MOVING_FORWARD.md](MOVING_FORWARD.md))
 
-See [ARCHITECTURE_OVERHAUL.md](ARCHITECTURE_OVERHAUL.md) for architectural details.
+**Next Release (v2.0.5-beta)**: Input context tracking for cursor vs selection intent
+
+See [ARCHITECTURE_OVERHAUL.md](ARCHITECTURE_OVERHAUL.md) for architectural details and [MOVING_FORWARD.md](MOVING_FORWARD.md) for roadmap.
 
 ## Releases
 
