@@ -81,6 +81,23 @@ Edit `config.lua` to customize behavior:
 
 See [ARCHITECTURE_OVERHAUL.md](ARCHITECTURE_OVERHAUL.md) for architectural details.
 
+## Releases
+
+**Latest Release**: [v2.0-beta](https://github.com/asafebgi/cc.asaf.Nudger.xrnx/releases/latest)
+
+### Release Channels
+
+- **Beta Releases** (`v2.x-beta`): Feature-complete with comprehensive testing needed
+- **Stable Releases** (`v2.x`): Production-ready, fully tested
+
+### Download
+
+Download the latest `.xrnx` file from the [Releases page](https://github.com/asafebgi/cc.asaf.Nudger.xrnx/releases).
+
+### Version History
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history and migration guides.
+
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/asafebgi/cc.asaf.Nudger.xrnx/issues)
