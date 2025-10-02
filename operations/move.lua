@@ -324,22 +324,22 @@ end
 
 -- Move selection up
 function Move.move_selection_up()
-  return SelectionAccessor.move(Constants.DIRECTION.UP)
+  return SelectionAccessor.move_notes(Constants.DIRECTION.UP)
 end
 
 -- Move selection down
 function Move.move_selection_down()
-  return SelectionAccessor.move(Constants.DIRECTION.DOWN)
+  return SelectionAccessor.move_notes(Constants.DIRECTION.DOWN)
 end
 
 -- Move selection left
 function Move.move_selection_left()
-  return SelectionAccessor.move(Constants.DIRECTION.LEFT)
+  return SelectionAccessor.move_notes(Constants.DIRECTION.LEFT)
 end
 
 -- Move selection right
 function Move.move_selection_right()
-  return SelectionAccessor.move(Constants.DIRECTION.RIGHT)
+  return SelectionAccessor.move_notes(Constants.DIRECTION.RIGHT)
 end
 
 return Move

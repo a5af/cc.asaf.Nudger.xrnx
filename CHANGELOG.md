@@ -5,6 +5,45 @@ All notable changes to Note Properties (Nudger) will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.6-beta] - 2025-10-02 - Selection Note Movement
+
+### Added
+- **SelectionAccessor.move_notes()**: Actually moves note data when moving selections
+  - Collects all notes from source selection
+  - Validates destination bounds (pattern boundaries, visible columns)
+  - Copies notes to destination and clears source
+  - Updates selection to new position
+  - Uses undo grouping for single undo step
+- **SelectionAccessor.clone_notes()**: Clones note data for selections
+  - Same as move_notes but keeps source notes intact
+  - Supports all four directions (up/down/left/right)
+- **Helper functions** for selection operations:
+  - `calculate_dest_bounds()` - Calculates destination selection bounds
+  - `is_within_bounds()` - Validates bounds against pattern limits
+  - `copy_note_column()` - Copies all note properties
+  - `clear_note_column()` - Clears note to blank state
+
+### Changed
+- **operations/move.lua**: Selection operations now use `move_notes()` instead of `move()`
+  - Move selection up/down/left/right now actually move note data
+  - Previous version only moved selection bounds without touching notes
+- **operations/clone.lua**: Added selection clone support
+  - Clone up/down/left/right now check for selection intent via InputTracker
+  - Clone selection operations use `clone_notes()` for actual note duplication
+  - All clone operations now support both cursor and selection modes
+
+### Fixed
+- **Critical**: Selection move operations now actually move notes instead of just bounds
+- **Critical**: Selection clone operations now actually clone notes to new position
+- Selection operations respect visible note columns
+- Proper boundary validation prevents moving selections outside pattern
+
+### Technical
+- Selection operations use same data collection pattern for consistency
+- All selection operations use undo grouping (Renoise 3.5+)
+- Maintains separation between bound calculation and note manipulation
+- Operations honor visible column settings from pattern/phrase editor
+
 ## [2.0.5-beta] - 2025-10-01 - Input Context Tracking
 
 ### Added

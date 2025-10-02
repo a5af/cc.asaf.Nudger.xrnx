@@ -18,6 +18,7 @@ local Context = require('renoise/context')
 local InputTracker = require('renoise/input_tracker')
 local PatternAccessor = require('renoise/pattern_accessor')
 local PhraseAccessor = require('renoise/phrase_accessor')
+local SelectionAccessor = require('renoise/selection_accessor')
 
 local Clone = {}
 
@@ -43,6 +44,11 @@ end
 -- Clone note up
 function Clone.clone_up()
   ErrorHandler.trace_enter("Clone.clone_up")
+
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
+    return Clone.clone_selection_up()
+  end
 
   -- Get context
   local context, err = Context.get_current()
@@ -103,6 +109,11 @@ end
 function Clone.clone_down()
   ErrorHandler.trace_enter("Clone.clone_down")
 
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
+    return Clone.clone_selection_down()
+  end
+
   -- Get context
   local context, err = Context.get_current()
   if not context then
@@ -161,6 +172,11 @@ end
 -- Clone note left (COMPLETED: was stub)
 function Clone.clone_left()
   ErrorHandler.trace_enter("Clone.clone_left")
+
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
+    return Clone.clone_selection_left()
+  end
 
   -- Get context
   local context, err = Context.get_current()
@@ -222,6 +238,11 @@ end
 function Clone.clone_right()
   ErrorHandler.trace_enter("Clone.clone_right")
 
+  -- Check input context for selection intent
+  if InputTracker.should_use_selection() then
+    return Clone.clone_selection_right()
+  end
+
   -- Get context
   local context, err = Context.get_current()
   if not context then
@@ -281,6 +302,30 @@ function Clone.clone_right()
 
   ErrorHandler.trace_exit("Clone.clone_right", true)
   return true, nil
+end
+
+-- ============================================================================
+-- Selection Clone
+-- ============================================================================
+
+-- Clone selection up
+function Clone.clone_selection_up()
+  return SelectionAccessor.clone_notes(Constants.DIRECTION.UP)
+end
+
+-- Clone selection down
+function Clone.clone_selection_down()
+  return SelectionAccessor.clone_notes(Constants.DIRECTION.DOWN)
+end
+
+-- Clone selection left
+function Clone.clone_selection_left()
+  return SelectionAccessor.clone_notes(Constants.DIRECTION.LEFT)
+end
+
+-- Clone selection right
+function Clone.clone_selection_right()
+  return SelectionAccessor.clone_notes(Constants.DIRECTION.RIGHT)
 end
 
 return Clone
