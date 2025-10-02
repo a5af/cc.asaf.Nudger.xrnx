@@ -197,10 +197,21 @@ function Clone.clone_left()
     if context.editor_type == Constants.EDITOR_CONTEXT.PHRASE then
       if context.note_col > 1 then
         song.selected_phrase_note_column = context.note_col - 1
+      else
+        -- Moving to previous track (phrase editor doesn't support cross-track)
+        song.selected_phrase_note_column = context.note_col
       end
     else
       if context.note_col > 1 then
+        -- Moving within same track
         song.selected_note_column_index = context.note_col - 1
+      elseif context.track > 1 then
+        -- Moving to previous track, last column
+        song.selected_track_index = context.track - 1
+        local pattern = song.patterns[context.pattern]
+        local track = pattern.tracks[context.track - 1]
+        local line = track.lines[context.line]
+        song.selected_note_column_index = #line.note_columns
       end
     end
   end
@@ -250,11 +261,22 @@ function Clone.clone_right()
       local col_count = PhraseAccessor.get_note_column_count(context)
       if context.note_col < col_count then
         song.selected_phrase_note_column = context.note_col + 1
+      else
+        -- At last column (phrase editor doesn't support cross-track)
+        song.selected_phrase_note_column = context.note_col
       end
     else
       local col_count = PatternAccessor.get_note_column_count(context)
       if context.note_col < col_count then
+        -- Moving within same track
         song.selected_note_column_index = context.note_col + 1
+      else
+        -- Moving to next track, first column
+        local pattern = song.patterns[context.pattern]
+        if context.track < #pattern.tracks then
+          song.selected_track_index = context.track + 1
+          song.selected_note_column_index = 1
+        end
       end
     end
   end

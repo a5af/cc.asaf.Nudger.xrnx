@@ -5,6 +5,20 @@ All notable changes to Note Properties (Nudger) will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.3-beta] - 2025-10-01 - Fix Move/Clone Left/Right
+
+### Fixed
+- **Critical**: Fixed move left/right operations not updating cursor position
+  - Now properly updates track index when moving across tracks
+  - Cursor follows moved note to correct position
+- **Critical**: Fixed clone left/right operations not updating cursor position
+  - Now properly updates track index when cloning across tracks
+  - Cursor follows cloned note when auto_select_cloned_note is enabled
+
+### Changed
+- Move/clone left/right now properly handle cross-track movement
+- Cursor positioning is consistent with up/down operations
+
 ## [2.0.2-beta] - 2025-10-01 - Restore Missing Keybindings
 
 ### Fixed

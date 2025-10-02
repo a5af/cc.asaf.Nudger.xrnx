@@ -244,6 +244,20 @@ function Move.move_left()
   copy_note_values(current_note, left_note)
   clear_note_values(current_note)
 
+  -- Update cursor to follow moved note
+  local song = renoise.song()
+  if context.note_col > 1 then
+    -- Moving within same track
+    song.selected_note_column_index = context.note_col - 1
+  elseif context.track > 1 then
+    -- Moving to previous track, last column
+    song.selected_track_index = context.track - 1
+    local pattern = song.patterns[context.pattern]
+    local track = pattern.tracks[context.track - 1]
+    local line = track.lines[context.line]
+    song.selected_note_column_index = #line.note_columns
+  end
+
   ErrorHandler.trace_exit("Move.move_left", true)
   return true, nil
 end
@@ -287,6 +301,22 @@ function Move.move_right()
   -- Move note
   copy_note_values(current_note, right_note)
   clear_note_values(current_note)
+
+  -- Update cursor to follow moved note
+  local song = renoise.song()
+  local pattern = song.patterns[context.pattern]
+  local track = pattern.tracks[context.track]
+  local line = track.lines[context.line]
+  local col_count = #line.note_columns
+
+  if context.note_col < col_count then
+    -- Moving within same track
+    song.selected_note_column_index = context.note_col + 1
+  elseif context.track < #pattern.tracks then
+    -- Moving to next track, first column
+    song.selected_track_index = context.track + 1
+    song.selected_note_column_index = 1
+  end
 
   ErrorHandler.trace_exit("Move.move_right", true)
   return true, nil
