@@ -24,7 +24,81 @@ ErrorHandler.debug("Configuration loaded", {
 })
 
 -- ============================================================================
--- Legacy Code (to be refactored in Phase 2+)
+-- Phase 3: Operation Modules
+-- ============================================================================
+
+local Nudge = require('operations/nudge')
+local Move = require('operations/move')
+local Clone = require('operations/clone')
+local Clear = require('operations/clear')
+
+-- Wrapper functions for keybindings (maintaining backward compatibility)
+function nudgeUp()
+  return Nudge.nudge_up()
+end
+
+function nudgeDown()
+  return Nudge.nudge_down()
+end
+
+function moveUp()
+  return Move.move_up()
+end
+
+function moveDown()
+  return Move.move_down()
+end
+
+function moveLeft()
+  return Move.move_left()
+end
+
+function moveRight()
+  return Move.move_right()
+end
+
+function selectionMoveUp()
+  return Move.move_selection_up()
+end
+
+function selectionMoveDown()
+  return Move.move_selection_down()
+end
+
+function selectionMoveLeft()
+  return Move.move_selection_left()
+end
+
+function selectionMoveRight()
+  return Move.move_selection_right()
+end
+
+function cloneUp()
+  return Clone.clone_up()
+end
+
+function cloneDown()
+  return Clone.clone_down()
+end
+
+function cloneLeft()
+  return Clone.clone_left()
+end
+
+function cloneRight()
+  return Clone.clone_right()
+end
+
+function clear()
+  return Clear.clear()
+end
+
+function clearSelection()
+  return Clear.clear_selection()
+end
+
+-- ============================================================================
+-- Legacy Code (to be removed in future phases)
 -- ============================================================================
 
 require 'utils'
