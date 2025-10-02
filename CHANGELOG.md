@@ -5,7 +5,23 @@ All notable changes to Note Properties (Nudger) will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2025-01-XX - Architectural Overhaul
+## [2.0.1-beta] - 2025-10-01 - Critical Bug Fixes
+
+### Fixed
+- **Critical**: Fixed "variable 'get_current_subcol' is not declared" error in clone operations
+- Removed legacy `clone.lua` file that was conflicting with new operations/clone.lua
+- Removed legacy `utils.lua` and `constants.lua` files that were no longer used
+- Cleaned up main.lua to only load new modular architecture files
+
+### Added
+- KEYBINDINGS.md - Comprehensive keybinding setup guide with platform-specific instructions
+- Alternative keybinding suggestions for conflict resolution
+- Quick setup reference table in README
+
+### Changed
+- Updated README to reference KEYBINDINGS.md for setup instructions
+
+## [2.0.0-beta] - 2025-10-01 - Architectural Overhaul
 
 ### Added
 - **Core Infrastructure**

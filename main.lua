@@ -101,8 +101,6 @@ end
 -- Keybinding and Menu Registration
 -- ============================================================================
 
-require 'utils'  -- Keep for utility functions still used elsewhere
-
 function init_keybindings()
   -- CLEAR
   renoise.tool():add_keybinding{
@@ -176,9 +174,6 @@ end
 -- ============================================================================
 -- Load Additional Modules and Initialize
 -- ============================================================================
-
-require 'clone'
--- Old constants.lua replaced by core/constants.lua (loaded at top)
 
 require 'osc_client'
 require 'osc_server'

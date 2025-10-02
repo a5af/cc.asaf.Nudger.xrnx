@@ -26,7 +26,11 @@ A Renoise tool for keyboard-centric note manipulation in pattern and phrase edit
 4. **Restart** Renoise
 5. **Verify** the tool appears in `Tools > Note Properties` menu
 
-## Suggested Keyboard Shortcuts
+## Keyboard Shortcuts
+
+**Quick Setup**: See [KEYBINDINGS.md](KEYBINDINGS.md) for detailed setup instructions and alternatives.
+
+### Recommended Shortcuts
 
 Configure in `Preferences > Keys > Tools > cc.asaf`:
 
