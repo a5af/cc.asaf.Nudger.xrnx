@@ -1,2 +1,10 @@
 .DS_Store
 user_config.lua
+
+# Test output
+tests/luacov.*.out
+tests/.busted_output
+*.rockspec
+
+# Lua rocks
+.luarocks/

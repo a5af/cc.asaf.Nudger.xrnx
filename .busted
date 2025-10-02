@@ -1,0 +1,10 @@
+return {
+  _all = {
+    ROOT = {"tests/spec/"},
+    pattern = "_spec%.lua$",
+    lpath = "./?.lua;./?/init.lua",
+    verbose = true,
+    coverage = false,
+    Xoutput = "gtest"
+  }
+}
