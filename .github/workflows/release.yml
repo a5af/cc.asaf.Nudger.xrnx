@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Package .xrnx file
+        run: |
+          # Create temporary directory for packaging
+          mkdir -p package
+
+          # Copy all files except .git, .github, and other excluded files
+          rsync -av --exclude='.git' \
+                    --exclude='.github' \
+                    --exclude='package' \
+                    --exclude='.gitignore' \
+                    --exclude='user_config.lua' \
+                    ./ package/
+
+          # Create zip archive
+          cd package
+          zip -r ../cc.asaf.Nudger-${{ steps.get_version.outputs.VERSION }}.xrnx .
+          cd ..
+
+          # Verify the package was created
+          ls -lh *.xrnx
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: cc.asaf.Nudger-${{ steps.get_version.outputs.VERSION }}.xrnx
+          name: Note Properties v${{ steps.get_version.outputs.VERSION }}
+          body: |
+            ## Note Properties (Nudger) v${{ steps.get_version.outputs.VERSION }}
+
+            Keyboard-centric note manipulation for Renoise pattern and phrase editors.
+
+            ### Installation
+            1. Download `cc.asaf.Nudger-${{ steps.get_version.outputs.VERSION }}.xrnx`
+            2. Copy to your Renoise tools directory:
+               - **Windows**: `%APPDATA%\Renoise\V3.5.0\Scripts\Tools\`
+               - **macOS**: `~/Library/Preferences/Renoise/V3.5.0/Scripts/Tools/`
+               - **Linux**: `~/.renoise/V3.5.0/Scripts/Tools/`
+            3. Restart Renoise
+
+            See [README](https://github.com/asafebgi/cc.asaf.Nudger.xrnx) for full documentation.
+          draft: false
+          prerelease: ${{ contains(steps.get_version.outputs.VERSION, 'beta') || contains(steps.get_version.outputs.VERSION, 'alpha') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
