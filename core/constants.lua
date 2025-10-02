@@ -42,7 +42,8 @@ Constants.NOTE = {
 Constants.INSTRUMENT = {
   MIN = 0,
   MAX = 254,
-  BLANK = 255
+  BLANK = 255,
+  DEFAULT = 0
 }
 
 -- ============================================================================
@@ -59,7 +60,8 @@ Constants.VOLUME = {
   MAX_HEX = 0x7F,
   BLANK = 255,
   BLANK_HEX = 0xFF,
-  EFFECT_START = 128  -- Values >= 128 are effect commands
+  EFFECT_START = 128,  -- Values >= 128 are effect commands
+  DEFAULT = 64  -- Half volume
 }
 
 -- ============================================================================
@@ -76,7 +78,8 @@ Constants.PANNING = {
   MAX_HEX = 0x7F,
   BLANK = 255,
   BLANK_HEX = 0xFF,
-  EFFECT_START = 128  -- Values >= 128 are effect commands
+  EFFECT_START = 128,  -- Values >= 128 are effect commands
+  DEFAULT = 64  -- Center
 }
 
 -- ============================================================================
@@ -88,7 +91,8 @@ Constants.PANNING = {
 Constants.DELAY = {
   MIN = 0,
   MAX = 255,
-  MAX_HEX = 0xFF
+  MAX_HEX = 0xFF,
+  DEFAULT = 0
 }
 
 -- ============================================================================
@@ -103,6 +107,20 @@ Constants.EFFECT = {
   AMOUNT_MIN = 0,
   AMOUNT_MAX = 255,
   AMOUNT_MAX_HEX = 0xFF
+}
+
+-- Effect number (for compatibility with selection_accessor)
+Constants.EFFECT_NUMBER = {
+  MIN = 0,
+  MAX = 255,
+  BLANK = 255
+}
+
+-- Effect amount (for compatibility with selection_accessor)
+Constants.EFFECT_AMOUNT = {
+  MIN = 0,
+  MAX = 255,
+  BLANK = 255
 }
 
 -- ============================================================================
@@ -161,64 +179,31 @@ Constants.EFFECT_COMMANDS = {
   -- K would be Panning Slide Right but not in original mapping
 }
 
--- Mapping from Renoise command value to sequential cardinal number
+-- Mapping from command string to cardinal number
 -- Used for cycling through effect commands
 Constants.CMD_TO_CARDINAL = {
-  [10] = 1,   -- A
-  [30] = 2,   -- U
-  [13] = 3,   -- D
-  [16] = 4,   -- G
-  [31] = 5,   -- V
-  [18] = 6,   -- I
-  [24] = 7,   -- O
-  [29] = 8,   -- T
-  [12] = 9,   -- C
-  [22] = 10,  -- M
-  [21] = 11,  -- L
-  [28] = 12,  -- S
-  [11] = 13,  -- B
-  [14] = 14,  -- E
-  [26] = 15,  -- Q
-  [27] = 16,  -- R
-  [34] = 17,  -- Y
-  [23] = 18,  -- N
-  [25] = 19,  -- P
-  [32] = 20,  -- W
-  [33] = 21,  -- X
-  [35] = 22,  -- Z
-  [19] = 23   -- J
+  ["0"] = 0, ["1"] = 1, ["2"] = 2, ["3"] = 3, ["4"] = 4,
+  ["5"] = 5, ["6"] = 6, ["7"] = 7, ["8"] = 8, ["9"] = 9,
+  ["A"] = 10, ["B"] = 11, ["C"] = 12, ["D"] = 13, ["E"] = 14,
+  ["F"] = 15, ["G"] = 16, ["H"] = 17, ["I"] = 18, ["J"] = 19,
+  ["K"] = 20, ["L"] = 21, ["M"] = 22, ["N"] = 23, ["O"] = 24,
+  ["P"] = 25, ["Q"] = 26, ["R"] = 27, ["S"] = 28, ["T"] = 29,
+  ["U"] = 30, ["V"] = 31, ["W"] = 32, ["X"] = 33, ["Y"] = 34,
+  ["Z"] = 35
 }
 
 -- Reverse mapping: cardinal number to Renoise command value
 -- Used for getting next/previous effect command
 Constants.CARDINAL_TO_CMD = {
-  [1] = 10,   -- A
-  [2] = 30,   -- U
-  [3] = 13,   -- D
-  [4] = 16,   -- G
-  [5] = 31,   -- V
-  [6] = 18,   -- I
-  [7] = 24,   -- O
-  [8] = 29,   -- T
-  [9] = 12,   -- C
-  [10] = 22,  -- M
-  [11] = 21,  -- L
-  [12] = 28,  -- S
-  [13] = 11,  -- B
-  [14] = 14,  -- E
-  [15] = 26,  -- Q
-  [16] = 27,  -- R
-  [17] = 34,  -- Y
-  [18] = 23,  -- N
-  [19] = 25,  -- P
-  [20] = 32,  -- W
-  [21] = 33,  -- X
-  [22] = 35,  -- Z
-  [23] = 19   -- J
+  [0] = "0", [1] = "1", [2] = "2", [3] = "3", [4] = "4",
+  [5] = "5", [6] = "6", [7] = "7", [8] = "8", [9] = "9",
+  [10] = "A", [11] = "B", [12] = "C", [13] = "D", [14] = "E",
+  [15] = "F", [16] = "G", [17] = "H", [18] = "I", [19] = "J",
+  [20] = "K", [21] = "L", [22] = "M", [23] = "N", [24] = "O",
+  [25] = "P", [26] = "Q", [27] = "R", [28] = "S", [29] = "T",
+  [30] = "U", [31] = "V", [32] = "W", [33] = "X", [34] = "Y",
+  [35] = "Z"
 }
-
--- Total number of effect commands for cycling
-Constants.EFFECT_COMMAND_COUNT = 23
 
 -- ============================================================================
 -- Direction Constants
@@ -236,9 +221,9 @@ Constants.DIRECTION = {
 -- ============================================================================
 
 Constants.EDITOR_CONTEXT = {
-  PATTERN = "pattern",
-  PHRASE = "phrase",
-  UNKNOWN = "unknown"
+  PATTERN = "PATTERN",
+  PHRASE = "PHRASE",
+  UNKNOWN = "UNKNOWN"
 }
 
 -- ============================================================================
@@ -282,6 +267,24 @@ function Constants.get_prev_effect_number(current_number)
   end
 
   return Constants.CARDINAL_TO_CMD[cardinal]
+end
+
+-- Get next effect command by cardinal index (0-35)
+function Constants.get_next_effect_cmd(current_cardinal)
+  local next = current_cardinal + 1
+  if next > 35 then
+    return 0
+  end
+  return next
+end
+
+-- Get previous effect command by cardinal index (0-35)
+function Constants.get_prev_effect_cmd(current_cardinal)
+  local prev = current_cardinal - 1
+  if prev < 0 then
+    return 35
+  end
+  return prev
 end
 
 -- Check if value represents a blank/empty state for given property type

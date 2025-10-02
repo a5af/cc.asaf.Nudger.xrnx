@@ -107,7 +107,7 @@ function ConfigManager.load()
   end
 
   -- Try to load user config
-  if renoise and renoise.tool then
+  if renoise and renoise.tool and renoise.tool() and renoise.tool().bundle_path then
     local user_config_path = renoise.tool().bundle_path .. "user_config.lua"
 
     -- Check if user config exists
@@ -216,7 +216,7 @@ end
 -- Save current configuration to user_config.lua
 -- @return success, error_message
 function ConfigManager.save()
-  if not renoise or not renoise.tool then
+  if not renoise or not renoise.tool or not renoise.tool() or not renoise.tool().bundle_path then
     return false, "Renoise tool API not available"
   end
 
@@ -243,7 +243,7 @@ end
 -- Reset to default configuration (deletes user config file)
 -- @return success, error_message
 function ConfigManager.reset()
-  if not renoise or not renoise.tool then
+  if not renoise or not renoise.tool or not renoise.tool() or not renoise.tool().bundle_path then
     return false, "Renoise tool API not available"
   end
 

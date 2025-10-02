@@ -292,8 +292,11 @@ local function is_within_bounds(bounds, context)
   local track_count = PatternAccessor.get_track_count(context)
 
   -- Check line bounds
-  if bounds.start_line < 1 or bounds.end_line > line_count then
-    return false, "Selection would move outside pattern bounds (lines)"
+  if bounds.start_line < 1 then
+    return false, "Cannot move selection above first line"
+  end
+  if bounds.end_line > line_count then
+    return false, "Cannot move selection below last line"
   end
 
   -- Check track bounds

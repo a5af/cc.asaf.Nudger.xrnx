@@ -8,19 +8,30 @@ local MockRenoise = {}
 
 -- Mock song structure
 function MockRenoise.create_mock_song()
-  return {
+  local song = {
     patterns = {},
     tracks = {},
     instruments = {},
     selected_line_index = 1,
     selected_track_index = 1,
     selected_note_column_index = 1,
+    selected_effect_column_index = 0,
     selected_pattern_index = 1,
+    selected_instrument_index = 1,
+    selected_sub_column_type = 1,  -- NOTE
     selection_in_pattern = nil,
     selected_phrase = nil,
     selected_phrase_line = nil,
-    selected_phrase_note_column = nil
+    selected_phrase_note_column = nil,
+    selected_phrase_effect_column = nil
   }
+
+  -- These get populated when patterns/tracks are set up
+  -- Will be set to actual note column object
+  song.selected_note_column = nil
+  song.selected_effect_column = nil
+
+  return song
 end
 
 -- Mock pattern
@@ -141,6 +152,37 @@ end
 -- Set current mock song
 function MockRenoise.set_song(song)
   MockRenoise._current_song = song
+  MockRenoise.update_selected_columns(song)
+end
+
+-- Update selected_note_column and selected_effect_column based on current indices
+function MockRenoise.update_selected_columns(song)
+  song = song or MockRenoise._current_song
+  if not song then return end
+
+  -- Update selected_note_column
+  if song.patterns and song.selected_pattern_index and song.selected_track_index and song.selected_line_index and song.selected_note_column_index then
+    local pattern = song.patterns[song.selected_pattern_index]
+    if pattern and pattern.tracks then
+      local track = pattern.tracks[song.selected_track_index]
+      if track and track.lines then
+        local line = track.lines[song.selected_line_index]
+        if line and line.note_columns and song.selected_note_column_index > 0 then
+          song.selected_note_column = line.note_columns[song.selected_note_column_index]
+        else
+          song.selected_note_column = nil
+        end
+      end
+    end
+  end
+
+  -- Update selected_effect_column
+  if song.selected_effect_column_index and song.selected_effect_column_index > 0 then
+    -- Similar logic for effect column if needed
+    song.selected_effect_column = {} -- placeholder
+  else
+    song.selected_effect_column = nil
+  end
 end
 
 -- Clear mock
